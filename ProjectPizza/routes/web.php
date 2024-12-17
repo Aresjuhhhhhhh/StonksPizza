@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\MedewerkerController;
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\KlantController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
