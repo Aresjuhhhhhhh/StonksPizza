@@ -27,6 +27,18 @@ class Pizza extends Model
         $this->ingredienten()->detach($ingredient);
     }
 
-    public function prijs(){}
-    //maak deze functie werkend. De prijs van een pizza is de som van de prijzen van de ingredienten.
+    public function prijs($Grootte = 'Normaal')
+    {
+        $pizzaGrootte = [
+            'Klein' => 0.8,
+            'Normaal' => 1,
+            'Groot' => 1.2
+        ];
+        $factor = $pizzaGrootte[$Grootte] ?? $pizzaGrootte['Normaal'];
+        $totaalPrijsIngredienten = $this->ingredienten->sum(function($ingredient){
+            return $ingredient->prijs;
+        });
+
+        return $factor * $totaalPrijsIngredienten;
+    }
 }
