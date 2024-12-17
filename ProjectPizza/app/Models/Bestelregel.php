@@ -22,4 +22,5 @@ class Bestelregel extends Model
         return $this->belongsTo(Pizza::class);
     }
     public function regelPrijs(){}
+    //maak deze functie werkend. De prijs van een bestelregel is de prijs van de pizza vermenigvuldigd met de afmeting vermenigvuldigd met het aantal.
 }

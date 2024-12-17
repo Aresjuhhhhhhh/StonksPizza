@@ -28,4 +28,5 @@ class Pizza extends Model
     }
 
     public function prijs(){}
+    //maak deze functie werkend. De prijs van een pizza is de som van de prijzen van de ingredienten.
 }
