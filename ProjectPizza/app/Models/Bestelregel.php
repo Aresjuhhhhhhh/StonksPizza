@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Bestelregel extends Model
 {
+    protected $table = 'bestelregels';
+    protected $primaryKey = 'id';
+    protected $keyType = 'int';
     protected $fillable = 
     [
         'aantal',

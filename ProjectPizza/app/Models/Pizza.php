@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Pizza extends Model
 {
+    protected $table = 'pizzas';
+    protected $primaryKey = 'id';
+    protected $keyType = 'int';
     protected $fillable = 
     [
-        'naam'
+        'naam',
+        'totaalPrijs'
     ];
 
     public function ingredienten(): BelongsToMany
@@ -27,7 +31,7 @@ class Pizza extends Model
         $this->ingredienten()->detach($ingredient);
     }
 
-    public function prijs($Grootte = 'Normaal')
+    public function totaalPrijs($Grootte = 'Normaal')
     {
         $pizzaGrootte = [
             'Klein' => 0.8,
@@ -36,7 +40,7 @@ class Pizza extends Model
         ];
         $factor = $pizzaGrootte[$Grootte] ?? $pizzaGrootte['Normaal'];
         $totaalPrijsIngredienten = $this->ingredienten->sum(function($ingredient){
-            return $ingredient->prijs;
+            return $ingredient->verkoopPrijs;
         });
 
         return $factor * $totaalPrijsIngredienten;

@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Bestelling extends Model
 {
+    protected $table = 'bestellingen';
+    protected $primaryKey = 'id';
+    protected $keyType = 'int';
     protected $fillable = 
     [
         'datum',

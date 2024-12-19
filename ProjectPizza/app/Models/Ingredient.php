@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Ingredient extends Model
 {
+    protected $table = 'ingredienten';
+    protected $primaryKey = 'id';
+    protected $keyType = 'int';
     protected $fillable = 
     [
         'naam',
-        'prijs'
+        'verkoopPrijs'
     ];
     public function pizzas(): BelongsToMany
     {
