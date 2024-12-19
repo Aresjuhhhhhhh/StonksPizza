@@ -14,6 +14,9 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            backgroundImage:{
+                'pizza': "url('/achtergrond/PizzaAchtergrond.jpg')",
+            }
         },
     },
 
