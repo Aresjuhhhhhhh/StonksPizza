@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klant</title>
-    @vite('resources/css/app.css')
+    <title>Bestelling</title>
 </head>
 <body>
-    <h1>Klant page</h1>
+    
 </body>
 </html>

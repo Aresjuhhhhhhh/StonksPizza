@@ -7,8 +7,8 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="flex items-center justify-center min-h-screen">
-    <header class="w-full max-w-md bg-red-600 text-white rounded-lg shadow-md p-6 text-center">
+<body class="flex items-center justify-center min-h-screen bg-cover bg-center h-screen w-full" style="background-image: url('/achtergrond/PizzaBackground.jpg');">
+    <header class="w-full max-w-md bg-gray-800 bg-opacity-70 text-white rounded-lg shadow-md p-6 text-center">
         <h1 class="text-2xl font-bold">Stonks Pizzaria</h1>
         <nav class="mt-4">
             @if (Route::has('login'))
@@ -24,7 +24,7 @@
                     </a>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
-                            class="block w-full bg-red-700 text-white py-2 rounded-md mt-2 hover:bg-yellow-400 hover:text-black transition">
+                            class="block w-full bg-black text-white py-2 rounded-md mt-2 hover:bg-yellow-400 hover:text-black transition">
                             Register
                         </a>
                     @endif
