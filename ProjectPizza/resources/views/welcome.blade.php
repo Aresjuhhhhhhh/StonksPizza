@@ -7,8 +7,8 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="flex items-center justify-center min-h-screen bg-cover bg-center h-screen w-full" style="background-image: url('/achtergrond/PizzaBackground.jpg');">
-    <header class="w-full max-w-md bg-gray-800 bg-opacity-70 text-white rounded-lg shadow-md p-6 text-center">
+<body class="flex items-center justify-center w-full min-h-screen bg-center h-screen bg-cover" style="background-image: url('/images/IntroBackground.png');"> 
+<header class="w-full max-w-md bg-gray-800 bg-opacity-70 text-white rounded-lg shadow-md p-6 text-center">
         <h1 class="text-2xl font-bold">Stonks Pizzaria</h1>
         <nav class="mt-4">
             @if (Route::has('login'))
