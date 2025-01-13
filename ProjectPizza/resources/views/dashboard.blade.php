@@ -11,6 +11,22 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
+
+                @if(Auth::user()->Rol == "klant")
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    {{ __("klant") }}
+                </div>
+                @elseif(Auth::user()->Rol == "Medewerker")
+
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    {{ __("Medewerker") }}
+                </div>
+
+                @elseif(Auth::user()->Rol == "Manager")
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    {{ __("Manager") }}
+                </div>
+                @endif
             </div>
         </div>
     </div>

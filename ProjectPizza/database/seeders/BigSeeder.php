@@ -7,14 +7,20 @@ use Illuminate\Database\Seeder;
 use App\Models\Bestelling;
 use App\Models\Bestelregel;
 use App\Models\Ingredient;
-use App\Models\Klant;
+use App\Models\User;
 use App\Models\Pizza;
+use App\Models\Medewerker;
 
 
 class BigSeeder extends Seeder
 {
     public function run(): void
     {
+        $manager = User::create(['name' => 'Manager', 'email' => 'StonksPizzManager@123.com', 'password' => 'StonksIsTheBest123', 'Rol' => 'Manager']);
+
+        $medewerker = User::create(['name' => 'Medewerker 1', 'email' => 'StonksPizzAdmin@123.com', 'password' => 'Stonks123', 'Rol' => 'Medewerker']);
+
+
         $Deeg = Ingredient::create(['naam' => 'Deeg', 'verkoopPrijs' => 2.0]);
         $Tomatensaus = Ingredient::create(['naam' => 'Tomatensaus', 'verkoopPrijs' => 0.5]);
         $Kaas = Ingredient::create(['naam' => 'Kaas', 'verkoopPrijs' => 0.75]);
