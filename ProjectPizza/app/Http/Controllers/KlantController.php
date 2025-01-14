@@ -34,6 +34,9 @@ class KlantController extends Controller
     {
         return view('klant.soliciteren');
     }
+    public function pizzaDashboard(){
+        return view('pizzaDashboard');
+    }
     /**
      * Show the form for creating a new resource.
      */
