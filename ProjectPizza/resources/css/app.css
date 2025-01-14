@@ -35,6 +35,68 @@
 {
     width: 70%;
     height: 30%;
+    border: solid 4px black;
+    border-radius: 20px;
 }
 
+.menuTekst
+{
+    color: white; 
+    font-size: 60px; 
+    text-shadow: 4px 4px 0 #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000;
+    margin-top: 30%;
+}
+
+.menuTekst:hover
+{
+    color: #9b9b9b;
+}
+
+.thirdDiv {
+    margin-top: 250px;
+    
+}
+
+
+
+.thirdDivTekst
+{
+    color: white; 
+    font-size: 60px; 
+    text-shadow: 4px 4px 0 #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000;
+    text-align: center;
+}
+.ImgDivs
+{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    justify-content: center;
+}
+
+
+.overOnsimg
+{
+    margin-top: 40px;
+    margin-left: 75px;
+    width: 75%;
+    height: 70%;
+    border: solid 4px black;
+    border-radius: 20px;
+}
+.solliciterenImg
+{
+    margin: 40px;
+    margin-left: 150px;
+    width: 70%;
+    height: 70%;
+    border: solid 4px black;
+    border-radius: 20px;
+}
+
+.aTag {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
 

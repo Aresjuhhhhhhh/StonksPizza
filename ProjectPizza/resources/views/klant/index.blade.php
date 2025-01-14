@@ -14,7 +14,7 @@
     <header>
         <nav>
             <ul class="nav-list">
-            <a class="test" href="{{url('/Home')}}" ><img src="{{ asset('images/websiteLogo.jpg') }}" alt="pizza" class="logo"></a>
+            <a  href="{{url('/Home')}}" ><img src="{{ asset('images/websiteLogo.jpg') }}" alt="pizza" class="logo"></a>
                 <li><button><a href="{{ url('/menu') }}"  >Menu</a></button></li>
                 <li><button><a href="{{ url('/overOns') }}" >Over ons</a></button></li>
                 <li><button><a href="{{ url('/FAQ') }}">Veelgestelde vragen</a></button></li>
@@ -37,9 +37,22 @@
         Pizza maken is een kunst,<br> en wij zijn de artiesten. <br> Meer smaak. Minder gedoe.
     </h1>
 </div>
-<div class="relative homePageImage mt-36">
+<div class="relative homePageImage mt-36 mb-10">
     <img src="{{ asset('images/AchtergrondHomePageMenu.png') }}" class="hpMenuImg" >
-    <h1></h1>
+    <img src="{{ asset('images/MenuHomePagePizzas.png')}}" class="absolute" >
+    <h1 class="absolute menuTekst"><a href="{{url('/menu')}}" >Bekijk het menu hier!</a></h1>
+</div>
+<div  class="thirdDiv">
+<h1 class=" thirdDivTekst">Ook interesant</h1>
+<div class="ImgDivs" >
+    <div>
+        <a href="{{url('/overOns')}}" class="aTag" ><img src="{{ asset('images/overOnsAchtergrond.png') }}" class="overOnsimg" ></a>
+         
+    </div>
+    <div>
+        <a href="{{url('/soliciteren')}}" class="aTag" ><img src="{{ asset('images/SoliciterenAchtergrond.png') }}" class="solliciterenImg" ></a>
+    </div>
+</div>
 </div>
 <!--End of body-->
 
