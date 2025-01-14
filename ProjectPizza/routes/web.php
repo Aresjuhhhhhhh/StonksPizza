@@ -10,8 +10,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function (){
-    return view('index');
+
+Route::middleware(['auth', 'role:manager'])->group(function () {
+    Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');
+});
+
+Route::middleware(['auth', 'role:medewerker'])->group(function () {
+    Route::get('/medewerker', [MedewerkerController::class, 'index'])->name('medewerker.index');
+});
+
+Route::middleware(['auth', 'role:klant'])->group(function () {
+    Route::get('/klant', [KlantController::class, 'index'])->name('klant.index');
 });
 
 
