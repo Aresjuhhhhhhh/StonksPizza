@@ -10,18 +10,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::middleware(['auth', 'role:manager'])->group(function () {
-    Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');
-});
-
-Route::middleware(['auth', 'role:medewerker'])->group(function () {
-    Route::get('/medewerker', [MedewerkerController::class, 'index'])->name('medewerker.index');
-});
-
-Route::middleware(['auth', 'role:klant'])->group(function () {
-    Route::get('/klant', [KlantController::class, 'index'])->name('klant.index');
-});
+route::get('/overOns', [KlantController::class, 'overOns']);
+route::get('/menu', [KlantController::class, 'menu']);
+route::get('/FAQ', [KlantController::class, 'FAQ']);
+route::get('/soliciteren', [KlantController::class, 'soliciteren']);
 
 
 Route::get('/dashboard', function () {
@@ -33,5 +25,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+Route::resource('klant', KlantController::class);
 require __DIR__.'/auth.php';

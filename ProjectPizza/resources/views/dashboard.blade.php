@@ -14,7 +14,7 @@
 
                 @if(Auth::user()->Rol == "klant")
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("klant") }}
+                    <a href="{{ route('klant.index') }}">Home</a>
                 </div>
                 @elseif(Auth::user()->Rol == "Medewerker")
 
