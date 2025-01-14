@@ -18,7 +18,7 @@ class Bestelling extends Model
     ];
     public function klant(): BelongsTo
     {
-        return $this->belongsTo(Klant::class);
+        return $this->belongsTo(User::class);
     }
 
     public function bestelregels(): HasMany

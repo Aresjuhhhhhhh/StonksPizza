@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('woonplaats')->nullable();
+            $table->string('telefoonnummer')->nullable();
+            $table->string('adres')->nullable();
+            $table->decimal('pizzaPunten')->default(100);
+            $table->string('Rol')->default('klant');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('bestellingen', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('klant_id')->constrained('klanten')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->date('datum');
             $table->string('status');
             $table->timestamps();
