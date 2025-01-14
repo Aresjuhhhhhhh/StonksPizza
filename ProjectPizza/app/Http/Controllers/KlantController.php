@@ -34,6 +34,14 @@ class KlantController extends Controller
     {
         return view('klant.soliciteren');
     }
+    public function profiel()
+    {
+        return view('klant.profiel');
+    }
+    public function cart()
+    {
+        return view('klant.bestelling');
+    }
     /**
      * Show the form for creating a new resource.
      */
