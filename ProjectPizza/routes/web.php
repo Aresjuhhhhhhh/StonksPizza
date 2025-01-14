@@ -10,9 +10,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function (){
-    return view('index');
-});
+route::get('/overOns', [KlantController::class, 'overOns']);
+route::get('/menu', [KlantController::class, 'menu']);
+route::get('/FAQ', [KlantController::class, 'FAQ']);
+route::get('/soliciteren', [KlantController::class, 'soliciteren']);
 
 
 Route::get('/dashboard', function () {
@@ -24,5 +25,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+Route::resource('klant', KlantController::class);
 require __DIR__.'/auth.php';

@@ -12,9 +12,28 @@ class KlantController extends Controller
      */
     public function index()
     {
-        //
+        return view('klant.index');
+    }
+    public function overOns()
+    {
+        return view('klant.overOns');
     }
 
+
+    public function menu()
+    {
+        return view('klant.menu');
+    }
+
+    public function FAQ()
+    {
+        return view('klant.FAQ');
+    }
+
+    public function soliciteren()
+    {
+        return view('klant.soliciteren');
+    }
     /**
      * Show the form for creating a new resource.
      */
