@@ -1,0 +1,59 @@
+.bodyColor
+{
+    background-color: #E4E6D4;
+    font-family: 'Jersey20', sans-serif;
+    font-size: 25px;
+    
+    
+}
+.header-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #2C2C2C;
+    height: 30vh
+}
+
+.logo {
+    width: 160px;
+    height: 125px;
+    border-radius: 50%;
+    margin-right: 150px;
+}
+
+
+.nav-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    gap: 110px;
+    margin: 0;
+    padding: 0;
+    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+}
+
+.nav-list li {
+    display: inline;
+
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+}
+
+.nav-list li button:hover a {
+    color: #FFD700;
+}
+.pizzaCart
+{
+    margin-left: 50px;
+    width: 60%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+}

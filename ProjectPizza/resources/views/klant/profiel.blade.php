@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veelgestelde vragen</title>
+    <title>Document</title>
     @vite('resources/css/app.css')
     @vite('resources/css/index.css')
     <link rel="icon" href="{{ asset('images/PizzarriaIcon.png') }}" type="image/png">
 </head>
 <body class="bodyColor" >
-    <!-- Header -->
+   <!-- Header -->
 <div class="header-container">
     <header>
         <nav>
