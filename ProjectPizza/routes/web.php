@@ -15,8 +15,7 @@ route::get('/overOns', [KlantController::class, 'overOns']);
 route::get('/menu', [KlantController::class, 'menu']);
 route::get('/FAQ', [KlantController::class, 'FAQ']);
 route::get('/soliciteren', [KlantController::class, 'soliciteren']);
-route::get('/profiel', [KlantController::class, 'profiel']);
-route::get('/cart', [KlantController::class, 'cart']);
+route::get('/pizzaDashboard', [KlantController::class, 'pizzaDashboard']);
 
 
 Route::get('/dashboard', function () {
