@@ -57,3 +57,10 @@
     display: flex;
     justify-content: center;
 }
+.footer-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #2C2C2C;
+    height: 30vh
+}

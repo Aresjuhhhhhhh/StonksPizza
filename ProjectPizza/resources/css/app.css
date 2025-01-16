@@ -51,13 +51,16 @@
 {
     color: #9b9b9b;
 }
+.sloganTekst
+{
+    color: white; 
+    text-shadow: 4px 4px 0 #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000;
+}
 
 .thirdDiv {
     margin-top: 250px;
     
 }
-
-
 
 .thirdDivTekst
 {
