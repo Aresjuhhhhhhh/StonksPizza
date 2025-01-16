@@ -30,9 +30,9 @@ class BigSeeder extends Seeder
         $Bacon = Ingredient::create(['naam' => 'Bacon', 'verkoopPrijs' => 1.25]);
         $Ananas = Ingredient::create(['naam' => 'Ananas', 'verkoopPrijs' => 2.5]);
         
-        $Pizza1 = Pizza::create(['naam' => 'Margherita', 'totaalPrijs' => 4.5]);
-        $Pizza2 = Pizza::create(['naam' => 'Salami', 'totaalPrijs' => 5.0]);
-        $Pizza3 = Pizza::create(['naam' => 'Hawaii', 'totaalPrijs' => 8.0]);
+        $Pizza1 = Pizza::create(['naam' => 'Margherita', 'totaalPrijs' => 4.5, 'beschrijving' => 'De klassieker onder de pizza\'s.', 'imagePath' => 'MozzarellaPizzapng.png']);
+        $Pizza2 = Pizza::create(['naam' => 'Salami', 'totaalPrijs' => 5.0, 'beschrijving' => 'Een pizza met salami.', 'imagePath' => 'SalamiPizzapng.png']);
+        $Pizza3 = Pizza::create(['naam' => 'Hawaii', 'totaalPrijs' => 8.0, 'beschrijving' => 'Een pizza met ham, bacon en ananas.', 'imagePath' => 'HawaiPizza.png']);
 
         $Pizza1->ingredientErbij($Deeg, $Tomatensaus, $Mozarella);
         $Pizza2->ingredientErbij($Deeg, $Tomatensaus, $Kaas, $Salami);
