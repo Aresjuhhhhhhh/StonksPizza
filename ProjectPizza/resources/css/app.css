@@ -15,7 +15,8 @@
     background-color: #E4E6D4;
     font-family: 'Jersey20', sans-serif;
     font-size: 25px;
-    
+    color: white;
+    font-weight: bold;
 }
 .homePageImage
 {
@@ -41,7 +42,6 @@
 
 .menuTekst
 {
-    color: white; 
     font-size: 60px; 
     text-shadow: 4px 4px 0 #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000;
     margin-top: 30%;
@@ -51,17 +51,17 @@
 {
     color: #9b9b9b;
 }
+.sloganTekst
+{
+    text-shadow: 4px 4px 0 #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000;
+}
 
 .thirdDiv {
     margin-top: 250px;
     
 }
-
-
-
 .thirdDivTekst
 {
-    color: white; 
     font-size: 60px; 
     text-shadow: 4px 4px 0 #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000;
     text-align: center;
