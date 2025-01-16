@@ -36,20 +36,7 @@
     </header>
 </div>
 <!--End of header-->
-<!--Footer-->
-<div class="footer-container bg-gray-800 text-white py-4">
-    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-        <div class="ml-16">
-            <h1 class="text-lg font-bold">Contact</h1>
-            <p>Telefoon: 06-42069420</p>
-            <p>Email: StonksPizzeria@gmail.com</p>
-        </div>
-        <div class="text-center flex-grow ml-16">
-            © 2025 Alle rechten voorbehouden aan Stonks Pizzeria
-        </div>
-    </footer>
-</div>
-<!--End of footer-->
+
 
 <div class="menu-container">
     @foreach($menuItems as $Item)
@@ -67,7 +54,20 @@
     @endforeach
 </div>
 
-
+<!--Footer-->
+<div class="footer-container bg-gray-800 text-white py-4">
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        <div class="ml-16">
+            <h1 class="text-lg font-bold">Contact</h1>
+            <p>Telefoon: 06-42069420</p>
+            <p>Email: StonksPizzeria@gmail.com</p>
+        </div>
+        <div class="text-center flex-grow ml-16">
+            © 2025 Alle rechten voorbehouden aan Stonks Pizzeria
+        </div>
+    </footer>
+</div>
+<!--End of footer-->
 
 </body>
 
