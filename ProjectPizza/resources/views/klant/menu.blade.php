@@ -41,8 +41,8 @@
             <h2 class="menu-title">{{$Item->naam}}</h2>
             <p class="menu-description">{{$Item->beschrijving}}</p>
             <p class="menu-price">€{{$Item->totaalPrijs}}</p>
+            <button class="menu-button" >Toevoegen</button>
         </div>
-        <button class="menu-button" >Toevoegen</button>
     </div>
     @endforeach
 </div>
