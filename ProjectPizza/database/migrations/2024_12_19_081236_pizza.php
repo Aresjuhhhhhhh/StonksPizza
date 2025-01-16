@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('pizzas', function (Blueprint $table) {
             $table->id();
             $table->string('naam');
+            $table->string('beschrijving');
+            $table->string('imagePath');
             $table->decimal('totaalPrijs', 5, 2)->default(0);
             $table->timestamps();
         });

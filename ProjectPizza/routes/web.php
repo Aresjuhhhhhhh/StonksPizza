@@ -16,6 +16,7 @@ route::get('/menu', [KlantController::class, 'menu']);
 route::get('/FAQ', [KlantController::class, 'FAQ']);
 route::get('/soliciteren', [KlantController::class, 'soliciteren']);
 route::get('/pizzaDashboard', [KlantController::class, 'pizzaDashboard']);
+Route::get('/menu', [App\Http\Controllers\MenuController::class, 'index']);
 
 
 Route::get('/dashboard', function () {

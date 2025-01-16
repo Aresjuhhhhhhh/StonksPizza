@@ -3,40 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pizza;
 
 
-class KlantController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('klant.index');
-    }
-    public function overOns()
-    {
-        return view('klant.overOns');
+        $menuItems = Pizza::all();
+
+        return view('klant.menu', ['menuItems' => $menuItems]);
     }
 
-
-    public function menu()
-    {
-        return view('klant.menu');
-    }
-
-    public function FAQ()
-    {
-        return view('klant.FAQ');
-    }
-
-    public function soliciteren()
-    {
-        return view('klant.soliciteren');
-    }
-    public function pizzaDashboard(){
-        return view('pizzaDashboard');
-    }
     /**
      * Show the form for creating a new resource.
      */
