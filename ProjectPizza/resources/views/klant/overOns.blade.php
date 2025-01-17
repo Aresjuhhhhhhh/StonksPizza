@@ -11,7 +11,8 @@
     <link rel="icon" href="{{ asset('images/PizzarriaIcon.png') }}" type="image/png">
 </head>
 
-<body class="bodyColor" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/abstractPopArtBG.avif');">
+<body class="bodyColor"
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/abstractPopArtBG.avif');">
     <!-- Header -->
     <div class="header-container">
         <header>
@@ -19,11 +20,16 @@
                 <ul class="nav-list">
                     <a class="test" href="{{url('/Home')}}"><img src="{{ asset('images/websiteLogo.jpg') }}" alt="pizza"
                             class="logo"></a>
-                    <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/menu') }}">Menu</a></button></li>
-                    <li><button class="underline text-yellow-300"><a href="{{ url('/overOns') }}">Over ons</a></button></li>
-                    <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/FAQ') }}">Veelgestelde vragen</a></button></li>
-                    <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/soliciteren') }}">Solliciteren</a></button></li>
-                    <li><button class="hover:underline decoration-yellow-300"><a href="{{url('/profiel')}}">Profiel</a></button></li>
+                    <li><button class="hover:underline decoration-yellow-300"><a
+                                href="{{ url('/menu') }}">Menu</a></button></li>
+                    <li><button class="underline text-yellow-300"><a href="{{ url('/overOns') }}">Over ons</a></button>
+                    </li>
+                    <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/FAQ') }}">Veelgestelde
+                                vragen</a></button></li>
+                    <li><button class="hover:underline decoration-yellow-300"><a
+                                href="{{ url('/soliciteren') }}">Solliciteren</a></button></li>
+                    <li><button class="hover:underline decoration-yellow-300"><a
+                                href="{{url('/profiel')}}">Profiel</a></button></li>
                     <a href="{{url('/cart')}}"><img src="{{ asset('images/ShoppingCart.png') }}" alt="pizzaCart"
                             class="pizzaCart"></a>
                 </ul>
@@ -33,7 +39,7 @@
     <!--End of header-->
 
     <!--Body-->
-    <div class="bg-white OverOnsTekst bg-opacity-70 text-black">
+    <div class=" OverOnsTekst bg-gray-800 bg-opacity-70 text-white">
         <h1 class="tekstH1">Het Verhaal van Stonks Pizzaria</h1>
         <p>Welkom bij Stonks Pizzaria! Hier draait alles om meer dan alleen pizza; het gaat om de perfecte mix van
             smaak, creativiteit en plezier.</p>

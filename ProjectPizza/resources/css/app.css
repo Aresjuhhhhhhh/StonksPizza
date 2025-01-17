@@ -12,6 +12,7 @@
 
 .bodyColor
 {
+    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
     background-color: #E4E6D4;
     font-family: 'Jersey20', sans-serif;
     font-size: 25px;
