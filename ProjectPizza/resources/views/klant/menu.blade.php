@@ -21,8 +21,7 @@
     <header>
         <nav>
             <ul class="nav-list">
-                <a class="test" href="{{url('/Home')}}"><img src="{{ asset('images/websiteLogo.jpg') }}" alt="pizza"
-                        class="logo"></a>
+                <a class="test" href="{{url('/Home')}}"><img src="{{ asset('images/websiteLogo.jpg') }}" alt="pizza" class="logo"></a>
                 <li><button><a href="{{ url('/menu') }}">Menu</a></button></li>
                 <li><button><a href="{{ url('/overOns') }}">Over ons</a></button></li>
                 <li><button><a href="{{ url('/FAQ') }}">Veelgestelde vragen</a></button></li>

@@ -6,11 +6,13 @@
     text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
     background-size: cover;
     background-position: center;
-    padding-bottom: 20px; /* Add padding to the bottom */
-    position: relative; /* Ensure button is positioned correctly */
+    padding-bottom: 20px; 
+    position: relative; 
+    margin-bottom: 7%;
 }
 
-.menu-container {
+
+.menu-container{
     margin: 5%;
     display: flex;
     flex-wrap: wrap;

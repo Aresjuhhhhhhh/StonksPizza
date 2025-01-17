@@ -13,7 +13,10 @@ class Pizza extends Model
     protected $fillable = 
     [
         'naam',
-        'totaalPrijs'
+        'totaalPrijs',
+        'beschrijving',
+        'imagePath'
+
     ];
 
     public function ingredienten(): BelongsToMany
@@ -21,9 +24,11 @@ class Pizza extends Model
         return $this->belongsToMany(Ingredient::class);
     }
 
-    public function ingredientErbij(Ingredient $ingredient)
+    public function ingredientErbij(array $ingredienten)
     {
-        $this->ingredienten()->attach($ingredient);
+        foreach ($ingredienten as $ingredient) {
+            $this->ingredienten()->attach($ingredient);
+        }
     }
 
     public function ingredientErAf(Ingredient $ingredient)

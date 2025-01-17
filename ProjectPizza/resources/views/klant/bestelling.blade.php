@@ -37,6 +37,19 @@
 
 </div>
 <!--End of header-->
+
+@foreach($winkelmandje as $item)
+    <p><strong>Pizza Naam:</strong> {{ $item->product->naam ?? 'Onbekend product' }}</p>
+    <p><strong>Extra Ingrediënten:</strong> 
+        @foreach($item->extraIngredients as $ingredient)
+            {{ $ingredient->naam }},
+        @endforeach
+    </p>
+    <p><strong>Aantal:</strong> {{ $item->quantity }}</p>
+    <p><strong>Grootte:</strong> {{ $item->size }}</p>
+@endforeach
+
+
 <!--Footer-->
 <div class="footer-container bg-gray-800 text-white py-4">
     <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
