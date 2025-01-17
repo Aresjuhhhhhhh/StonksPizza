@@ -6,6 +6,9 @@ use App\Models\Bestelregel;
 use Illuminate\Http\Request;
 use App\Models\Pizza;
 use App\Models\Ingredient;
+use App\Models\Winkelmandje;
+use App\Models\ExtraIngredientWinkelmandje;
+
 
 
 class MenuController extends Controller
@@ -35,21 +38,36 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        $pizza = Pizza::findOrFail($request->pizza_id);
-        $ingredients = Ingredient::whereIn('id', $request->ingredients ?? [])->get();
-    
-        // Add pizza and ingredients to the cart logic
-        // Example:
-        $cart = session()->get('cart', []);
-        $cart[] = [
-            'pizza' => $pizza,
-            'ingredients' => $ingredients,
-        ];
-        session()->put('cart', $cart);
-    
-        return redirect()->route('cart.index')->with('success', 'Pizza added to cart!');
-    }
+        // Validate the request data
+        $request->validate([
+            'pizza_id' => 'required|exists:pizzas,id',
+            'quantity' => 'required|integer|min:1',
+            'Grootte' => 'required|exists:pizza_grootte,id',
+            'ingredients' => 'array',
+            'ingredients.*' => 'exists:ingredienten,id', // Ensure this line is consistent with the table name
+        ]);
 
+        // Create a new bestelling (order)
+        $bestelling = Winkelmandje::create([
+            'user_id' => auth()->id(),
+            'product_id' => $request->pizza_id,
+            'quantity' => $request->quantity,
+            'grootte_id' => $request->Grootte,
+        ]);
+
+        // Attach the selected ingredients to the bestelling
+        if ($request->has('ingredients')) {
+            foreach ($request->ingredients as $ingredientId) {
+                ExtraIngredientWinkelmandje::create([
+                    'winkelmandje_id' => $bestelling->id,
+                    'ingredient_id' => $ingredientId,
+                ]);
+            }
+        }
+
+        // Redirect back with a success message
+        return view('klant.menu');
+    }
     /**
      * Display the specified resource.
      */
@@ -58,7 +76,7 @@ class MenuController extends Controller
         $pizza = Pizza::findOrFail($id);
 
         $ingredients = Ingredient::all();
-    
+
         return view('klant.bekijken', compact('pizza', 'ingredients'));
     }
 

@@ -48,17 +48,19 @@
                     <strong>Pizza Naam:</strong>
                     {{ $item->product->naam ?? 'Onbekend product' }}
                 </p>
+                @foreach ($extraIngredients as $extras)
                 <p class="mb-4">
                     <strong>Extra Ingrediënten:</strong>
-                    {{ implode(', ', $item->extraIngredients->pluck('naam')->toArray()) }}
+                    {{ $extras->ingredienten->naam}}
                 </p>
+                @endforeach
                 <p class="mb-4">
                     <strong>Aantal:</strong>
                     {{ $item->quantity }}
                 </p>
                 <p class="mb-4">
                     <strong>Grootte:</strong>
-                    {{ $item->size }}
+                    {{ $item->grootte->afmeting }}
 
                 </p>
             @endforeach

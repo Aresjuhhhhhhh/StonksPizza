@@ -14,9 +14,8 @@ class Winkelmandje extends Model
     protected $fillable = [
         'user_id',
         'product_id',
-        'size',
-        'extra_ingredients',
         'quantity',
+        'grootte_id',
     ];
 
     // Relationship to User
@@ -31,9 +30,13 @@ class Winkelmandje extends Model
         return $this->belongsTo(Pizza::class, 'product_id');
     }
 
+    public function grootte()
+    {
+        return $this->belongsTo(Bestelregel::class, 'grootte_id');
+    }
 
     public function extraIngredients()
     {
-        return $this->belongsToMany(Ingredient::class, 'extra_ingredient_winkelmandje', 'winkelmandje_id', 'ingredient_id');
+        return $this->hasMany(ExtraIngredientWinkelmandje::class);
     }
 }

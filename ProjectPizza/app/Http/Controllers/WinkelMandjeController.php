@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Winkelmandje;
+use App\Models\ExtraIngredientWinkelmandje;
 use App\Models\Pizza;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,8 +19,11 @@ class WinkelMandjeController extends Controller
         $winkelmandje = Winkelmandje::where('user_id', $user->id)
             ->with('extraIngredients') // Eager load extraIngredients
             ->get();
+
+        $extraIngredients = ExtraIngredientWinkelmandje::findOrFail($winkelmandje->id);
+
     
-        return view('klant.bestelling', ['winkelmandje' => $winkelmandje]);
+        return view('klant.bestelling', ['winkelmandje' => $winkelmandje, 'extraIngredients' => $extraIngredients]);
     }
     /**
      * Show the form for creating a new resource.

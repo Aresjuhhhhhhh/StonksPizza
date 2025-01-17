@@ -19,8 +19,8 @@ class Ingredient extends Model
     {
         return $this->belongsToMany(Pizza::class);
     }
-    public function winkelmandjes()
-{
-    return $this->belongsToMany(Winkelmandje::class, 'extra_ingredient_winkelmandje');
-}
+    public function extraIngredients()
+    {
+        return $this->hasMany(ExtraIngredientWinkelmandje::class);
+    }
 }

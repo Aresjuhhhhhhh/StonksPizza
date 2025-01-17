@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('product_id')->constrained('pizzas')->onDelete('cascade');
-            $table->string('size')->default('Normaal'); // Stores size (e.g., 'Klein', 'Normaal', 'Groot')
+            $table->foreignId('grootte_id')->constrained('bestelregels')->onDelete('cascade');
             $table->integer('quantity');
             $table->timestamps();
         });

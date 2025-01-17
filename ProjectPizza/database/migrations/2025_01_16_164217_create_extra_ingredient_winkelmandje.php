@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('extra_ingredient_winkelmandje', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('winkelmandje_id')->constrained('winkelmandje'); 
-            $table->foreignId('ingredient_id')->constrained('ingredienten'); 
+            $table->foreignId('winkelmandje_id')->constrained('winkelmandje')->onDelete('cascade'); 
+            $table->foreignId('ingredient_id')->constrained('ingredienten')->onDelete('cascade'); 
             $table->timestamps();
         });
     }
