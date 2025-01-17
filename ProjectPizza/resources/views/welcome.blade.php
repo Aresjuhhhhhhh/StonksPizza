@@ -32,7 +32,6 @@
             @endif
         </nav>
     </header>
-    
 </body>
 
 </html>

@@ -16,7 +16,11 @@
     font-family: 'Jersey20', sans-serif;
     font-size: 25px;
     color: white;
-    font-weight: bold;
+    font-weight: bold; 
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .homePageImage
 {

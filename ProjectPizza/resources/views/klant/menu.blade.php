@@ -22,11 +22,11 @@
         <nav>
             <ul class="nav-list">
                 <a class="test" href="{{url('/Home')}}"><img src="{{ asset('images/websiteLogo.jpg') }}" alt="pizza" class="logo"></a>
-                <li><button><a href="{{ url('/menu') }}">Menu</a></button></li>
-                <li><button><a href="{{ url('/overOns') }}">Over ons</a></button></li>
-                <li><button><a href="{{ url('/FAQ') }}">Veelgestelde vragen</a></button></li>
-                <li><button><a href="{{ url('/soliciteren') }}">Solliciteren</a></button></li>
-                <li><button><a href="{{url('/profiel')}}">Profiel</a></button></li>
+                <li><button class="underline text-yellow-300"><a href="{{ url('/menu') }}">Menu</a></button></li>
+                <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/overOns') }}">Over ons</a></button></li>
+                <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/FAQ') }}">Veelgestelde vragen</a></button></li>
+                <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/soliciteren') }}">Solliciteren</a></button></li>
+                <li><button class="hover:underline decoration-yellow-300"><a href="{{url('/profiel')}}">Profiel</a></button></li>
                 <a href="{{url('/cart')}}"><img src="{{ asset('images/ShoppingCart.png') }}" alt="pizzaCart"
                         class="pizzaCart"></a>
             </ul>
@@ -59,10 +59,9 @@ function closeAddItemContainer() {
     </script>
 
 
-
 <div class="menu-container">
     @foreach($menuItems as $Item)
-    <div class="menu" style="background-image: url('{{ asset('images/HoutBG.png') }}');">
+    <div class="menu" style="background-image: url('{{ asset('images/HoutBG.png') }}'); ">
         <div class="menu-image">
             <img src="{{ asset('images/' . $Item->imagePath) }}" alt="pizza" class="pizza">
         </div>
@@ -81,44 +80,6 @@ function closeAddItemContainer() {
 
 
 
-
-<div id="addItemContainer" class="add-item-container" style="display: none;">
-    <div class="pizza-details">
-        <h2 id="pizza-name"></h2>
-        <p id="pizza-description"></p>
-        <p id="pizza-price"></p>
-        <img id="pizza-image" src="" alt="Pizza" style="width: 200px; height: auto;">
-        
-        <div id="extra-ingredients">
-        <select id="ingredients"  name="ingredients[]" multiple>
-                @foreach ($ingredienten as $ingredient)
-                    <option value="{{ $ingredient->id }}">{{ $ingredient->naam }}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <form method="POST" action="{{ route('menu.store') }}" id="pizza-form">
-            @csrf
-            <input type="hidden" name="pizza_id" id="pizza-id">
-            <select id="Grootte">                 
-                    @foreach ($pizzaGrootte as $grootte)
-                    <option value="{{$grootte->id}}">{{$grootte->afmeting}}</option>
-                    @endforeach
-            </select>
-
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="1" value="1">
-            <button type="submit" class="menu-button">Add to Cart</button>
-        </form>
-        
-        <button id="closeButton"  onclick="closeAddItemContainer()">Sluiten</button>
-    </div>
-</div>
-
-
-
-
-
 <!--Footer-->
 <div class="footer-container bg-gray-800 text-white py-4">
     <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
@@ -147,7 +108,6 @@ function closeAddItemContainer() {
     </footer>
 </div>
 <!--End of footer-->
-
 </body>
 
 </html>
