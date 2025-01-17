@@ -35,6 +35,29 @@
     </header>
 </div>
 <!--End of header-->
+<script>
+    // Function to show the hidden div and populate the pizza details
+function showPizzaDetails(id, name, description, price, imagePath) {
+    // Show the hidden div
+    document.getElementById('addItemContainer').style.display = 'block';
+
+    // Populate the pizza details in the div
+    console.log(id, name, description, price, imagePath);  // Debugging line
+    document.getElementById('pizza-name').innerText = name;
+    document.getElementById('pizza-description').innerText = description;
+    document.getElementById('pizza-price').innerText = '€' + price;
+    document.getElementById('pizza-image').src = '{{ asset('images/') }}' + '/' + imagePath;
+    document.getElementById('pizza-id').value = id;
+
+
+}
+
+// Function to close the hidden div
+function closeAddItemContainer() {
+    document.getElementById('addItemContainer').style.display = 'none';
+}
+    </script>
+
 
 
 <div class="menu-container">
@@ -47,11 +70,52 @@
             <h2 class="menu-title">{{$Item->naam}}</h2>
             <p class="menu-description">{{$Item->beschrijving}}</p>
             <p class="menu-price">€{{$Item->totaalPrijs}}</p>
-            <button class="menu-button" >Toevoegen</button>
+    <button type="button" class="menu-button" 
+            onclick="showPizzaDetails({{ $Item->id }}, '{{ $Item->naam }}', '{{ $Item->beschrijving }}', 
+            '{{ $Item->totaalPrijs }}', '{{ $Item->imagePath }}')">
+            Toevoegen</button>
         </div>
     </div>
     @endforeach
 </div>
+
+
+
+
+<div id="addItemContainer" class="add-item-container" style="display: none;">
+    <div class="pizza-details">
+        <h2 id="pizza-name"></h2>
+        <p id="pizza-description"></p>
+        <p id="pizza-price"></p>
+        <img id="pizza-image" src="" alt="Pizza" style="width: 200px; height: auto;">
+        
+        <div id="extra-ingredients">
+        <select id="ingredients"  name="ingredients[]" multiple>
+                @foreach ($ingredienten as $ingredient)
+                    <option value="{{ $ingredient->id }}">{{ $ingredient->naam }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <form method="POST" action="{{ route('menu.store') }}" id="pizza-form">
+            @csrf
+            <input type="hidden" name="pizza_id" id="pizza-id">
+            <select id="Grootte">                 
+                    @foreach ($pizzaGrootte as $grootte)
+                    <option value="{{$grootte->id}}">{{$grootte->afmeting}}</option>
+                    @endforeach
+            </select>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1">
+            <button type="submit" class="menu-button">Add to Cart</button>
+        </form>
+        
+        <button id="closeButton"  onclick="closeAddItemContainer()">Sluiten</button>
+    </div>
+</div>
+
+
 
 
 

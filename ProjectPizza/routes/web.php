@@ -4,6 +4,7 @@ use App\Http\Controllers\MedewerkerController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\KlantController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WinkelmandjeController;
 
@@ -32,6 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/winkelmandje', [WinkelmandjeController::class, 'index']);
     route::get('/cart', [WinkelmandjeController::class, 'index']);
+    route::resource('menu', MenuController::class);
+
 });
 
 require __DIR__.'/auth.php';

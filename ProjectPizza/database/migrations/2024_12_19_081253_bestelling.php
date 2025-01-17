@@ -19,9 +19,7 @@ return new class extends Migration {
         });
         Schema::create('bestelregels', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bestelling_id')->constrained('bestellingen')->onDelete('cascade');
-            $table->foreignId('pizza_id')->constrained('pizzas')->onDelete('cascade');
-            $table->integer('aantal');
+            $table->decimal('factor');
             $table->string('afmeting');
             $table->timestamps();
         });
