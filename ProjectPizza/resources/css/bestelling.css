@@ -1,0 +1,7 @@
+.bestelling-container {
+    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+    padding-left: 20px;
+}
+.button-container {
+    margin-left: 500px;
+}
