@@ -65,6 +65,24 @@
 .menu-button:hover {
     background-color: #218838; /* Darker green on hover */
 }
+
+.add-item-container
+{
+    background-color: #E4E6D4;
+    width: 60%;
+    height: 90%;
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        color: black;
+    
+}
+
 @media (max-width: 768px) {
     .menu {
         flex: 1 1 calc(50% - 10px);

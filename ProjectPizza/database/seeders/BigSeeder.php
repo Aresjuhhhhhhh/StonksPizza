@@ -29,16 +29,16 @@ class BigSeeder extends Seeder
     $Bacon = Ingredient::create(['naam' => 'Bacon', 'verkoopPrijs' => 1.25]);
     $Ananas = Ingredient::create(['naam' => 'Ananas', 'verkoopPrijs' => 2.5]);
     $Olijven = Ingredient::create(['naam' => 'Olijven', 'verkoopPrijs' => 1.5]);
-    $Champgiones = Ingredient::create(['naam' => 'Champgiones', 'verkoopPrijs' => 1.5]);
+    $Champignon = Ingredient::create(['naam' => 'Champignon', 'verkoopPrijs' => 1.5]);
     $Basilicum = Ingredient::create(['naam' => 'Basilicum', 'verkoopPrijs' => 0.50]);
 
     // Create Pizzas
-    $Pizza1 = Pizza::create(['naam' => 'Margherita', 'totaalPrijs' => 4.5, 'beschrijving' => 'De klassieker onder de pizza\'s.', 'imagePath' => 'MozzarellaPizzapng.png']);
+    $Pizza1 = Pizza::create(['naam' => 'Margherita', 'totaalPrijs' => 4.5, 'beschrijving' => 'De klassieker onder de pizzas.', 'imagePath' => 'MozzarellaPizzapng.png']);
     $Pizza2 = Pizza::create(['naam' => 'Salami', 'totaalPrijs' => 5.0, 'beschrijving' => 'Een pizza met salami.', 'imagePath' => 'SalamiPizzapng.png']);
     $Pizza3 = Pizza::create(['naam' => 'Hawaii', 'totaalPrijs' => 8.0, 'beschrijving' => 'Een pizza met ham, bacon en ananas.', 'imagePath' => 'HawaiPizza.png']);
     $Pizza4 = Pizza::create(['naam' => 'Caprese', 'totaalPrijs' => 6.0, 'beschrijving' => 'Een pizza met mozzarella en tomatensaus.', 'imagePath' => 'PizzaCaprese.png']);
-    $Pizza5 = Pizza::create(['naam' => 'Marinara', 'totaalPrijs' => 7.0, 'beschrijving' => 'Een pizza met basil en tomatensaus', 'imagePath' => 'PizzaMarinara.png']);
-    $Pizza6 = Pizza::create(['naam' => 'Olijf', 'totaalPrijs' => 6.5, 'beschrijving' => 'Een pizza met olijf en tomatensaus', 'imagePath' => 'PizzaOlijf.png']);
+    $Pizza5 = Pizza::create(['naam' => 'Marinara', 'totaalPrijs' => 7.0, 'beschrijving' => 'Een pizza met basil en kaas', 'imagePath' => 'PizzaMarinara.png']);
+    $Pizza6 = Pizza::create(['naam' => 'Olijf', 'totaalPrijs' => 6.5, 'beschrijving' => 'Een pizza met olijf, champignon', 'imagePath' => 'PizzaOlijf.png']);
 
     // Attach ingredients to pizzas
     $Pizza1->ingredientErbij([$Deeg->id, $Tomatensaus->id, $Mozarella->id]);
@@ -46,7 +46,7 @@ class BigSeeder extends Seeder
     $Pizza3->ingredientErbij([$Deeg->id, $Tomatensaus->id, $Kaas->id, $Ham->id, $Bacon->id, $Ananas->id]);
     $Pizza4->ingredientErbij([$Deeg->id, $Tomatensaus->id, $Kaas->id, $Mozarella->id]);
     $Pizza5->ingredientErbij([$Deeg->id, $Tomatensaus->id, $Kaas->id, $Basilicum->id]);
-    $Pizza6->ingredientErbij([$Deeg->id, $Tomatensaus->id, $Kaas->id, $Olijven->id]);
+    $Pizza6->ingredientErbij([$Deeg->id, $Tomatensaus->id, $Kaas->id, $Olijven->id, $Champignon->id]);
 
     // Create Users
     $user1 = User::create(['name' => 'User1', 'email' => 'user1@example.com', 'password' => bcrypt('password123')]);
@@ -66,8 +66,14 @@ class BigSeeder extends Seeder
         'quantity' => 1,
     ]);
 
-    // Attach extra ingredients to winkelmandje items (via the pivot table)
-    $winkelmandje1->extraIngredients()->attach([$Salami->id, $Bacon->id]);  // Example: Attach extra ingredients to winkelmandje1
-    $winkelmandje2->extraIngredients()->attach([$Mozarella->id, $Olijven->id]);  // Example: Attach extra ingredients to winkelmandje2
+
+    $winkelmandje1->extraIngredients()->attach([$Salami->id, $Bacon->id]);  
+    $winkelmandje2->extraIngredients()->attach([$Mozarella->id, $Olijven->id]);  
+
+
+
+    $afmetingKlein = Bestelregel::create(['factor' => 0.8, 'afmeting' => 'Klein']);
+    $afmetingNormaal = Bestelregel::create(['factor' => 1,'afmeting' => 'Normaal']);
+    $afmetingGroot = Bestelregel::create(['factor' => 1.2,'afmeting' => 'Groot']);
 }
 }

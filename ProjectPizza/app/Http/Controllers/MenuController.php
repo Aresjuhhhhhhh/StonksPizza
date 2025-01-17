@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bestelregel;
 use Illuminate\Http\Request;
 use App\Models\Pizza;
+use App\Models\Ingredient;
 
 
 class MenuController extends Controller
@@ -14,8 +16,10 @@ class MenuController extends Controller
     public function index()
     {
         $menuItems = Pizza::all();
+        $ingredienten = Ingredient::all();
+        $pizzaGrootte = Bestelregel::all();
 
-        return view('klant.menu', ['menuItems' => $menuItems]);
+        return view('klant.menu', ['menuItems' => $menuItems, 'ingredienten' => $ingredienten, 'pizzaGrootte' => $pizzaGrootte]);
     }
 
     /**
@@ -31,15 +35,31 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pizza = Pizza::findOrFail($request->pizza_id);
+        $ingredients = Ingredient::whereIn('id', $request->ingredients ?? [])->get();
+    
+        // Add pizza and ingredients to the cart logic
+        // Example:
+        $cart = session()->get('cart', []);
+        $cart[] = [
+            'pizza' => $pizza,
+            'ingredients' => $ingredients,
+        ];
+        session()->put('cart', $cart);
+    
+        return redirect()->route('cart.index')->with('success', 'Pizza added to cart!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $pizza = Pizza::findOrFail($id);
+
+        $ingredients = Ingredient::all();
+    
+        return view('klant.bekijken', compact('pizza', 'ingredients'));
     }
 
     /**
