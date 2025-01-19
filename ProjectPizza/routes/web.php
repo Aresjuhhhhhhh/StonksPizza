@@ -5,6 +5,7 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\KlantController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\VragenController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WinkelmandjeController;
 
@@ -16,6 +17,7 @@ route::get('/Home', [KlantController::class, 'index']);
 route::get('/overOns', [KlantController::class, 'overOns']);
 route::get('/menu', [KlantController::class, 'menu']);
 route::get('/FAQ', [KlantController::class, 'FAQ']);
+route::get('/FAQ', [VragenController::class, 'index']);
 route::get('/soliciteren', [KlantController::class, 'soliciteren']);
 route::get('/profiel', [KlantController::class, 'profiel']);
 route::get('/cart', [KlantController::class, 'cart']);

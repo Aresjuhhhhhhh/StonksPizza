@@ -9,8 +9,8 @@ use App\Models\Bestelregel;
 use App\Models\Ingredient;
 use App\Models\User;
 use App\Models\Pizza;
-use App\Models\Medewerker;
 use App\Models\Winkelmandje;
+use App\Models\FAQ;
 use App\Models\ExtraIngredientWinkelmandje;
 
 class BigSeeder extends Seeder
@@ -93,5 +93,16 @@ class BigSeeder extends Seeder
         
 
 
-    }
+    
+    $vraag1 = FAQ::create(['vraag' => 'Wat zijn de openingstijden?', 'antwoord' => 'Wij zijn elke dag open van 12:00 tot 22:00. Op zaterdagen zijn wij geopend van 12:00 tot 04:00.']);
+    $vraag2 = FAQ::create(['vraag' => 'Zijn er veganistische opties?', 'antwoord' => 'Ja, er zijn meerdere veganistische opties.']);
+    $vraag3 = FAQ::create(['vraag' => 'Kan ik mijn bestelling volgen', 'antwoord' => 'Ja, u kunt uw bestelling volgen via de website.']);
+    $vraag4 = FAQ::create(['vraag' => 'Kan ik mijn bestelling annuleren?', 'antwoord' => 'Ja, u kunt uw bestelling binnen 5 minuten tijd annuleren.']);
+    $vraag5 = FAQ::create(['vraag' => 'Zijn de pizzas hoge kwaliteit?', 'antwoord' => 'Ja, wij stoppen hier ons hart en ziel in de pizzas.']);
+    $vraag6 = FAQ::create(['vraag' => 'Zijn alle ingrediënten vers?', 'antwoord' => 'Ja, alle ingrediënten komen vers binnen.']);
+    $vraag7 = FAQ::create(['vraag' => 'Kan ik een eigen pizza maken?', 'antwoord' => 'Ja, je kunt bestaande pizzas bewerken tot je er tevreden mee bent.']);
+    $vraag8 = FAQ::create(['vraag' => 'Kan ik een tafel reserveren?', 'antwoord' => 'Ja, reserveringen zijn mogelijk. U kunt ons bereiken door te bellen naar 06-42069420.']);
+    $vraag9 = FAQ::create(['vraag' => 'Zijn er kinderfeestjes mogelijk?', 'antwoord' => 'Kinderfeesten zijn erg welkom hier omdat het goed uitkomt met ons thema!']);
+    $vraag10 = FAQ::create(['vraag' => 'Hoeveel medewerkers werken er gemiddeld per vestiging?', 'antwoord' => 'Er werken ongeveer 10 medewerkers per vestiging.']);
+}
 }
