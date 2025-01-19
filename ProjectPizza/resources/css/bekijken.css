@@ -1,0 +1,24 @@
+.form-container
+{
+    background-color: #E4E6D4;
+    text-align: center;
+    border-radius: 30px;
+    margin: 5%;
+}
+.pizzaImg
+{
+    width: 40%;
+    height: 40%;
+    display: flex;
+    justify-self: center;
+}
+
+.Opties-container select
+{
+    color: black;
+}
+
+.Opties-container input
+{
+    color: black;
+}

@@ -16,11 +16,11 @@ class ExtraIngredientWinkelmandje extends Model
 
     public function winkelmandje()
     {
-        return $this->belongsTo(Winkelmandje::class);
+        return $this->belongsTo(Winkelmandje::class, 'winkelmandje_id');
     }
-
+    
     public function ingredient()
     {
-        return $this->belongsTo(Ingredient::class);
+        return $this->belongsTo(Ingredient::class, 'ingredient_id');
     }
 }

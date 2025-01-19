@@ -14,8 +14,8 @@ class Winkelmandje extends Model
     protected $fillable = [
         'user_id',
         'product_id',
-        'quantity',
         'grootte_id',
+        'quantity',
     ];
 
     // Relationship to User
@@ -37,6 +37,6 @@ class Winkelmandje extends Model
 
     public function extraIngredients()
     {
-        return $this->hasMany(ExtraIngredientWinkelmandje::class);
+        return $this->hasMany(ExtraIngredientWinkelmandje::class, 'winkelmandje_id');
     }
 }
