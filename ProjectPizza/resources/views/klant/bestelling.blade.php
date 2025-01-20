@@ -75,7 +75,12 @@
                             <h1>{{ $winkelmandje->product->naam }} -
                                 €{{ number_format($winkelmandje->product->totaalPrijs, 2) }}</h1>
                             <p>Quantity: {{ $winkelmandje->quantity }}</p>
-                            <p>Size: {{ $winkelmandje->grootte->afmeting ?? 'Standard' }}</p>
+                            <p>
+                                Size: {{ $winkelmandje->grootte->afmeting ?? 'Standard' }}
+                                @if($winkelmandje->grootte->afmeting !== 'Normaal')
+                                    - €{{ number_format($winkelmandje->factorKosten(), 2) }}
+                                @endif
+                            </p>
 
                             @if ($winkelmandje->extraIngredients->isNotEmpty())
                                 <h3>Extra Ingredients:</h3>

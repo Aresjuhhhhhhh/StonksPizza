@@ -13,20 +13,24 @@ class CartController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $userId = $user->id;
-
+    
         $winkelmandjes = Winkelmandje::with([
             'product',
             'grootte',
             'extraIngredients.ingredient'
         ])->where('user_id', $user->id)->get();
-
+    
         // Bereken het totaalbedrag
         $totaalPrijs = $winkelmandjes->sum(function ($winkelmandje) {
             return $winkelmandje->totaalPrijs();
         });
-
-        return view('klant.bestelling', compact('winkelmandjes', 'totaalPrijs'));
+    
+        // Bereken het totaalbedrag voor alleen de factor kosten
+        $factorKosten = $winkelmandjes->sum(function ($winkelmandje) {
+            return $winkelmandje->factorKosten();
+        });
+    
+        return view('klant.bestelling', compact('winkelmandjes', 'totaalPrijs', 'factorKosten'));
     }
 
     public function destroy($id)
