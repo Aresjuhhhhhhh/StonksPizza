@@ -18,7 +18,10 @@ class Pizza extends Model
         'imagePath'
 
     ];
-
+    public function winkelmandjes()
+    {
+        return $this->hasMany(Winkelmandje::class, 'pizza_id');
+    }
     public function ingredienten(): BelongsToMany
     {
         return $this->belongsToMany(Ingredient::class);
