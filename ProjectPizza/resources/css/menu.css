@@ -6,15 +6,15 @@
     text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
     background-size: cover;
     background-position: center;
-    padding-bottom: 20px; 
-    position: relative; 
+    padding-bottom: 20px;
+    position: relative;
     margin-bottom: 7%;
     border-radius: 15px;
     border: 3px solid black;
 }
 
 
-.menu-container{
+.menu-container {
     margin: 5%;
     display: flex;
     flex-wrap: wrap;
@@ -36,26 +36,28 @@
 .menu-price {
     font-size: 35px;
     font-weight: bold;
-    margin-bottom: 20%;
+    margin-bottom: 10%;
 }
-.menu-image
-{
+
+.menu-image {
     width: 100%;
     height: 70%;
 }
+
 .menu-image img {
     width: 100%;
     height: auto;
 }
+
 .menu-button {
-    background-color: #28a745; /* Green background */
-    color: white; /* White text */
+    background-color: #28a745;
+    color: white;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    position: absolute; /* Position button at the bottom */
+    position: absolute;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
@@ -64,31 +66,31 @@
 }
 
 .menu-button:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #218838;
 }
-.add-item-container
-{
+
+.add-item-container {
     background-color: #E4E6D4;
     width: 60%;
     height: 90%;
-        display: none; /* Hidden by default */
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 20px;
-        z-index: 1000;
-        text-align: center;
-    
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 1000;
+    text-align: center;
+
 }
 
 .success-message {
-    background-color: #4CAF50; /* Green background */
+    background-color: #4CAF50;
     color: white;
     padding: 15px;
     text-align: center;
     font-size: 18px;
-    margin-top: 10px; /* Adjusted space from header */
+    margin-top: 10px;
     width: 30%;
     position: relative;
     z-index: 10;
@@ -102,8 +104,9 @@
         flex: 1 1 calc(50% - 10px);
     }
 }
+
 @media (max-width: 480px) {
     .menu {
-        flex: 1 1 100%; 
+        flex: 1 1 100%;
     }
 }

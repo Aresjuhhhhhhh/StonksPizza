@@ -3,14 +3,16 @@
     background-color: #E4E6D4;
     text-align: center;
     border-radius: 30px;
+    border: 3px solid black;
     margin: 5%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .pizzaImg
 {
     width: 40%;
     height: 40%;
-    display: flex;
-    justify-self: center;
 }
 
 .Opties-container select
