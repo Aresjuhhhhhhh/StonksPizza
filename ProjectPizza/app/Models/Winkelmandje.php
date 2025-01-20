@@ -41,23 +41,46 @@ class Winkelmandje extends Model
     }
 
     public function totaalPrijs()
-{
-    $pizzaGrootte = [
-        'Klein' => 0.8,
-        'Normaal' => 1,
-        'Groot' => 1.2
-    ];
+    {
+        $pizzaGrootte = [
+            'Klein' => 0.8,
+            'Normaal' => 1,
+            'Groot' => 1.2
+        ];
 
 
-    $factor = $pizzaGrootte[$this->grootte->afmeting] ?? $pizzaGrootte['Normaal'];
+        $factor = $pizzaGrootte[$this->grootte->afmeting] ?? $pizzaGrootte['Normaal'];
 
 
-    $pizzaPrijs = $this->product->totaalPrijs;
+        $pizzaPrijs = $this->product->totaalPrijs;
 
-    $extraIngredientPrijs = $this->extraIngredients->sum(function ($extraIngredient) {
-        return $extraIngredient->ingredient->verkoopPrijs;
-    });
+        $extraIngredientPrijs = $this->extraIngredients->sum(function ($extraIngredient) {
+            return $extraIngredient->ingredient->verkoopPrijs;
+        });
 
-    return ($pizzaPrijs + $extraIngredientPrijs) * $factor * $this->quantity;
-}
+        return ($pizzaPrijs + $extraIngredientPrijs) * $factor * $this->quantity;
+    }
+
+    public function factorKosten()
+    {
+        $pizzaGrootte = [
+            'Klein' => 0.8,
+            'Normaal' => 1,
+            'Groot' => 1.2
+        ];
+
+        $factor = $pizzaGrootte[$this->grootte->afmeting] ?? $pizzaGrootte['Normaal'];
+
+        $pizzaPrijs = $this->product->totaalPrijs;
+
+        $extraIngredientPrijs = $this->extraIngredients->sum(function ($extraIngredient) {
+            return $extraIngredient->ingredient->verkoopPrijs;
+        });
+
+        $basePrice = $pizzaPrijs + $extraIngredientPrijs;
+
+        $factorCost = ($basePrice * $factor) - $basePrice;
+
+        return $factorCost * $this->quantity;
+    }
 }
