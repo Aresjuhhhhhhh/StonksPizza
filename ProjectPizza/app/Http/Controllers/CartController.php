@@ -38,8 +38,9 @@ class CartController extends Controller
     }
 
 
-    public function edit()
+    public function edit($id)
     {
-
+        $winkelmandje = Winkelmandje::findOrFail($id);
+        return view('klant.editBestelling', compact('winkelmandje'));
     }
 }

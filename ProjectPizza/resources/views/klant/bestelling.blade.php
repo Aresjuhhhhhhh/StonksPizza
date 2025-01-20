@@ -91,7 +91,7 @@
                         </div>
 
                         <div>
-                            <form action="{{ route('winkelmandje.edit', $winkelmandje->id) }}" method="GET">
+                            <form action="{{ route('cart.edit', $winkelmandje->id) }}" method="GET">
                                 @csrf
                                 <button type="submit">✏️</button>
                             </form>
