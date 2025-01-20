@@ -37,39 +37,76 @@
         </header>
     </div>
     <!-- End of header -->
+    <script>
+        // Hide the success message after 5 seconds
+        window.onload = function () {
+            const successMessage = document.getElementById('verwijder-message');
+            if (successMessage) {
+                setTimeout(function () {
+                    successMessage.style.display = 'none';
+                }, 2000);
+            }
+        };
+    </script>
+
+
+
 
     <!-- Content -->
     <div class="flex-grow flex justify-center items-center">
         <div
             class="bestelling-container bg-gray-800 bg-opacity-70 max-w-3xl w-full p-6 rounded-lg shadow-lg text-white">
-            <div>
-            @foreach($winkelmandje as $item)
-                <p class="mb-4">
-                    <strong>Pizza Naam:</strong>
-                    {{ $item->product->naam ?? 'Onbekend product' }}
-                </p>
-                @foreach ($extraIngredients as $extras)
-                <p class="mb-4">
-                    <strong>Extra Ingrediënten:</strong>
-                    {{ $extras->ingredienten->naam}}
-                </p>
-                @endforeach
-                <p class="mb-4">
-                    <strong>Aantal:</strong>
-                    {{ $item->quantity }}
-                </p>
-                <p class="mb-4">
-                    <strong>Grootte:</strong>
-                    {{ $item->grootte->afmeting }}
 
-                </p>
-            @endforeach
-            </div>
-            <div>
-                <button>✏️</button>
-                <button>✏️</button>
-                <button>✏️</button>
-            </div>
+            @if(session('verwijderMessage'))
+                <div id="verwijder-message" class="success-message">
+                    {{ session('verwijderMessage') }}
+                </div>
+            @endif
+
+            @if($winkelmandjes->isEmpty())
+                <div class="align-text-center">
+                    <p>Je winkelmandje is leeg</p>
+                </div>
+            @else
+                @foreach ($winkelmandjes as $winkelmandje)
+                    <div class="product-div">
+
+                        <div>
+                            <h1>{{ $winkelmandje->product->naam }} -
+                                €{{ number_format($winkelmandje->product->totaalPrijs, 2) }}</h1>
+                            <p>Quantity: {{ $winkelmandje->quantity }}</p>
+                            <p>Size: {{ $winkelmandje->grootte->afmeting ?? 'Standard' }}</p>
+
+                            @if ($winkelmandje->extraIngredients->isNotEmpty())
+                                <h3>Extra Ingredients:</h3>
+                                <ul>
+                                    @foreach ($winkelmandje->extraIngredients as $extraIngredient)
+                                        <li>{{ $extraIngredient->ingredient->naam }} -
+                                            €{{ number_format($extraIngredient->ingredient->verkoopPrijs, 2) }}</li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <p>No extra ingredients added.</p>
+                            @endif
+                        </div>
+
+                        <div>
+                            <button>✏️</button>
+                            <form action="{{ route('cart.destroy', $winkelmandje->id) }}" method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">❌</button>
+                            </form>
+                        </div>
+
+                    </div>
+                @endforeach
+
+                <div>
+                    <h1>Total: €{{ number_format($totaalPrijs, 2) }}</h1>
+                </div>
+            @endif
         </div>
     </div>
     <!-- End of content -->

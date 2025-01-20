@@ -39,4 +39,25 @@ class Winkelmandje extends Model
     {
         return $this->hasMany(ExtraIngredientWinkelmandje::class, 'winkelmandje_id');
     }
+
+    public function totaalPrijs()
+{
+    $pizzaGrootte = [
+        'Klein' => 0.8,
+        'Normaal' => 1,
+        'Groot' => 1.2
+    ];
+
+
+    $factor = $pizzaGrootte[$this->grootte->afmeting] ?? $pizzaGrootte['Normaal'];
+
+
+    $pizzaPrijs = $this->product->totaalPrijs;
+
+    $extraIngredientPrijs = $this->extraIngredients->sum(function ($extraIngredient) {
+        return $extraIngredient->ingredient->verkoopPrijs;
+    });
+
+    return ($pizzaPrijs + $extraIngredientPrijs) * $factor * $this->quantity;
+}
 }

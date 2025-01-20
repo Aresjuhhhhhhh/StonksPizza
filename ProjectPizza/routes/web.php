@@ -9,6 +9,7 @@ use App\Http\Controllers\VragenController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WinkelmandjeController;
 use App\Http\Controllers\BekijkenController;
+use App\Http\Controllers\CartController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,7 +24,6 @@ route::get('/FAQ', [KlantController::class, 'FAQ']);
 route::get('/FAQ', [VragenController::class, 'index']);
 route::get('/soliciteren', [KlantController::class, 'soliciteren']);
 route::get('/profiel', [KlantController::class, 'profiel']);
-route::get('/cart', [KlantController::class, 'cart']);
 route::get('/pizzaDashboard', [KlantController::class, 'pizzaDashboard']);
 Route::get('/menu', [MenuController::class, 'index']);
 Route::get('/bekijken/{id}', [BekijkenController::class, 'show'])->name('bekijken.show');
@@ -38,8 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/winkelmandje', [WinkelmandjeController::class, 'index']);
-    route::get('/cart', [WinkelmandjeController::class, 'index']);
+    route::get('/cart', [CartController::class, 'index'])->name('klant.bestelling');
     Route::post('/bekijken/store', [BekijkenController::class, 'store'])->name('bekijken.store');
+    Route::get('/cart/{id}/edit', [CartController::class, 'edit'])->name('cart.edit');
+Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 
 
 });
