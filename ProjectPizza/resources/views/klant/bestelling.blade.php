@@ -91,7 +91,10 @@
                         </div>
 
                         <div>
-                            <button>✏️</button>
+                            <form action="{{ route('winkelmandje.edit', $winkelmandje->id) }}" method="GET">
+                                @csrf
+                                <button type="submit">✏️</button>
+                            </form>
                             <form action="{{ route('cart.destroy', $winkelmandje->id) }}" method="POST"
                                 onsubmit="return confirm('Are you sure you want to delete this item?');">
                                 @csrf
