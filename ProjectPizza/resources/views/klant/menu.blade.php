@@ -23,13 +23,15 @@
                 <ul class="nav-list">
                     <a class="test" href="{{url('/Home')}}"><img src="{{ asset('images/websiteLogo.jpg') }}" alt="pizza"
                             class="logo"></a>
-                    <li><button><a href="{{ url('/menu') }}">Menu</a></button></li>
-                    <li><button><a href="{{ url('/overOns') }}">Over
+                    <li><button class="underline text-yellow-300"><a href="{{ url('/menu') }}">Menu</a></button></li>
+                    <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/overOns') }}">Over
                                 ons</a></button></li>
-                    <li><button><a href="{{ url('/FAQ') }}">Veelgestelde
+                    <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/FAQ') }}">Veelgestelde
                                 vragen</a></button></li>
-                    <li><button><a href="{{ url('/soliciteren') }}">Solliciteren</a></button></li>
-                    <li><button><a href="{{url('/profiel')}}">Profiel</a></button></li>
+                    <li><button class="hover:underline decoration-yellow-300"><a
+                                href="{{ url('/soliciteren') }}">Solliciteren</a></button></li>
+                    <li><button class="hover:underline decoration-yellow-300"><a
+                                href="{{url('/profiel')}}">Profiel</a></button></li>
                     <a href="{{url('/cart')}}"><img src="{{ asset('images/ShoppingCart.png') }}" alt="pizzaCart"
                             class="pizzaCart"></a>
                 </ul>
@@ -40,7 +42,7 @@
     <!--End of header-->
 
     <!--Content-->
-    
+
     <!-- Success Message -->
     @if(session('message'))
         <div id="success-message" class="success-message">
@@ -58,7 +60,8 @@
                     <h2 class="menu-title">{{$Item->naam}}</h2>
                     <p class="menu-description">{{$Item->beschrijving}}</p>
                     <p class="menu-price">€{{$Item->totaalPrijs}}</p>
-                    <a href="{{ route('bekijken.show', ['id' => $Item->id]) }}">Bekijken</a>
+                    <a class="menu-button"
+                        href="{{ route('bekijken.show', ['id' => $Item->id]) }}">Bekijken</a>
                 </div>
             </div>
         @endforeach
@@ -66,13 +69,12 @@
 
 
     <script>
-        // Hide the success message after 5 seconds
-        window.onload = function() {
+        window.onload = function () {
             const successMessage = document.getElementById('success-message');
             if (successMessage) {
-                setTimeout(function() {
+                setTimeout(function () {
                     successMessage.style.display = 'none';
-                }, 2000);
+                }, 3000);
             }
         };
     </script>
