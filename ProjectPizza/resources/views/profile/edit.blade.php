@@ -38,27 +38,37 @@
     <!--End of header-->
 
     <!-- Content -->
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                <div class="p-4 bg-gray-800 bg-opacity-70 text-white sm:p-8 shadow sm:rounded-lg">
-                    <div class="max-w-xl">
-                        @include('profile.partials.update-profile-information-form')
-                    </div>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="p-4 bg-gray-800 bg-opacity-70 text-white sm:p-8 shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @include('profile.partials.update-profile-information-form')
                 </div>
-
-                <div class="p-4 bg-gray-800 bg-opacity-70 text-white sm:p-8   shadow sm:rounded-lg">
-                    <div class="max-w-xl">
-                        @include('profile.partials.update-password-form')
-                    </div>
+            </div>
+            <div class="p-4 bg-gray-800 bg-opacity-70 text-white sm:p-8   shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @include('profile.partials.update-password-form')
                 </div>
+            </div>
 
-                <div class="p-4 bg-gray-800 bg-opacity-70 text-white sm:p-8  shadow sm:rounded-lg">
-                    <div class="max-w-xl">
-                        @include('profile.partials.delete-user-form')
-                    </div>
+            <div class="p-4 bg-gray-800 bg-opacity-70 text-white sm:p-8 shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @include('profile.partials.update-address-form')
+                </div>
+                <div class="max-w-xl">
+                    @include('profile.partials.update-woonplaats-form')
+                </div>
+                <div class="max-w-xl">
+                    @include('profile.partials.update-phone-number-form')
+                </div>
+            </div>
+            <div class="p-4 bg-gray-800 bg-opacity-70 text-white sm:p-8  shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @include('profile.partials.delete-user-form')
                 </div>
             </div>
         </div>
+    </div>
     <!-- End of content -->
 
     <!--Footer-->

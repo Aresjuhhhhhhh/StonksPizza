@@ -36,12 +36,15 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     route::get('/profiel', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/update-woonplaats', [ProfileController::class, 'updateWoonplaats'])->name('profile.update-woonplaats');
+    Route::put('/profile/update-phone-number', [ProfileController::class, 'updatePhoneNumber'])->name('profile.update-phone-number');
+    Route::put('/profile/update-address', [ProfileController::class, 'updateAddress'])->name('profile.update-address');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/winkelmandje', [WinkelmandjeController::class, 'index']);
     route::get('/cart', [CartController::class, 'index'])->name('klant.bestelling');
     Route::post('/bekijken/store', [BekijkenController::class, 'store'])->name('bekijken.store');
     Route::get('/cart/{id}/edit', [CartController::class, 'edit'])->name('cart.edit');
-    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+        Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
     Route::get('/winkelmandje/{id}/edit', [CartController::class, 'edit'])->name('cart.edit');
 
 
