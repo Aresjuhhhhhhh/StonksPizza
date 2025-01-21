@@ -11,6 +11,43 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    public function updateWoonplaats(Request $request)
+    {
+        $request->validate([
+            'woonplaats' => 'required|string|max:255',
+        ]);
+
+        $user = auth()->user();
+        $user->woonplaats = $request->woonplaats;
+        $user->save();
+
+        return back()->with('status', 'Woonplaats succesvol bijgewerkt!');
+    }
+    public function updateAddress(Request $request)
+    {
+        $request->validate([
+            'adres' => 'required|string|max:255',
+        ]);
+
+        $user = auth()->user();
+        $user->adres = $request->adres;
+        $user->save();
+
+        return back()->with('status', 'Adres succesvol bijgewerkt!');
+    }
+
+    public function updatePhoneNumber(Request $request)
+    {
+        $request->validate([
+            'telefoonnummer' => 'required|string|max:15',
+        ]);
+
+        $user = auth()->user();
+        $user->telefoonnummer = $request->telefoonnummer;
+        $user->save();
+
+        return back()->with('status', 'Telefoonnummer succesvol bijgewerkt!');
+    }
     /**
      * Display the user's profile form.
      */

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soliciteren</title>
+    <title>Solliciteren</title>
     @vite('resources/css/app.css')
     @vite('resources/css/index.css')
     <link rel="icon" href="{{ asset('images/PizzarriaIcon.png') }}" type="image/png">
@@ -91,6 +91,7 @@
         </form>
     </div>
     <!-- End of content -->
+
     <!--Footer-->
     <div class="footer-container bg-gray-800 text-white py-4">
         <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
