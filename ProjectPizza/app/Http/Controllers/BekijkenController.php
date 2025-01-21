@@ -16,7 +16,8 @@ class BekijkenController extends Controller
         $pizza = Pizza::find($id);
         $Ingredienten = Ingredient::all();
         $pizzaGrootte = Bestelregel::all();
-    
+
+
         if (!$pizza) {
             abort(404, 'Pizza not found.');
         }

@@ -14,7 +14,54 @@
         <a class="p-3 text-3xl" href="{{ url('/menu') }}">Terug</a>
     </div>
 
+    <div>
+        <img class="pizzaImg mb-6 mx-auto" src="{{ asset('images/' . $winkelmandje->product->imagePath) }}"
+            alt="{{ $winkelmandje->product->naam }}">
+        <h1 class="text-4xl font-bold text-yellow-400 mb-4">{{ $winkelmandje->product->naam }}</h1>
+        <p class="text-gray-200 mb-2">{{ $winkelmandje->product->beschrijving }}</p>
+        <p class="text-4xl font-semibold text-yellow-300 mb-6">€{{ $winkelmandje->product->totaalPrijs }}</p>
 
+        <!-- Size and Quantity Form -->
+        <form method="POST" action="{{ route('cart.update', $winkelmandje->id) }}">
+            @csrf
+            @method('PUT')
+
+            <!-- Quantity -->
+            <div class="mb-4">
+                <label for="quantity" class="block text-yellow-400 text-xl mb-2">Aantal:</label>
+                <input type="number" id="quantity" name="quantity" class="p-2 rounded w-full"
+                    value="{{ old('quantity', $winkelmandje->quantity) }}" min="1" required>
+            </div>
+
+            <!-- Size -->
+            <div class="mb-4">
+                <label for="grootte" class="block text-yellow-400 text-xl mb-2">Grootte:</label>
+                <select id="grootte" name="grootte" class="p-2 rounded w-full" required>
+                    @foreach ($pizzaSizes as $size)
+                        <option value="{{ $size->id }}" {{ $winkelmandje->grootte_id == $size->id ? 'selected' : '' }}>
+                            {{ $size->naam }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <button type="submit" class="bg-yellow-400 text-black py-2 px-4 rounded">Opslaan</button>
+        </form>
+
+       <div>
+        @foreach ($extraGekozenIngredienten as $gekozenItem)
+                <p>{{ $gekozenItem->ingredient->naam }}</p>
+
+        @endforeach
+       </div>
+
+       <div>
+        @foreach ($ingredients as $item)
+        @if ($item->id != 1)
+        <p>{{$item->naam}}</p>
+        @endif
+        @endforeach
+       </div>
 </body>
 
 </html>

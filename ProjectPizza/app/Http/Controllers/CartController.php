@@ -53,34 +53,36 @@ class CartController extends Controller
             'ingredients' => 'array',
             'ingredients.*' => 'exists:ingredienten,id',
         ]);
-    
+
         // Find the existing winkelmandje record
         $winkelmandje = Winkelmandje::findOrFail($id);
-    
+
         // Update the winkelmandje details
         $winkelmandje->update([
             'quantity' => $validated['quantity'],
             'grootte_id' => $validated['grootte'],
         ]);
-    
-        // Sync extra ingredients
-        $winkelmandje->extraIngredients()->sync($validated['ingredients'] ?? []);
-    
+
+
         session()->flash('message', 'Pizza succesvol bijgewerkt!');
-        return redirect()->to('/menu');
+        return redirect()->to('/cart');
     }
 
     public function edit($id)
     {
+        // Find the winkelmandje record
         $winkelmandje = Winkelmandje::findOrFail($id);
-
-        // Retrieve related data (adjust as needed)
         $ingredients = Ingredient::all();
         $pizzaSizes = Bestelregel::all();
 
-        // Pass all data to the view
-        return view('klant.editBestelling', compact('winkelmandje', 'ingredients', 'pizzaSizes'));
+        $extraGekozenIngredienten = ExtraIngredientWinkelmandje::where('winkelmandje_id', $id)->get();
+
+        // Pass data to the view
+        return view('klant.editBestelling', compact('winkelmandje', 'ingredients', 'pizzaSizes', 'extraGekozenIngredienten'));
     }
+
+
+
 
 
 }
