@@ -10,18 +10,16 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('bestellingen', function (Blueprint $table) {
+        Schema::create('order', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('pizzas')->onDelete('cascade');
+            $table->foreignId('grootte_id')->constrained('bestelregels')->onDelete('cascade');
+            $table->foreignId('winkelmandje_id')->constrained('winkelmandje')->onDelete('cascade'); 
             $table->date('datum');
+            $table->integer('quantity');
             $table->string('status');
             $table->string('bestelmethode');
-            $table->timestamps();
-        });
-        Schema::create('bestelregels', function (Blueprint $table) {
-            $table->id();
-            $table->decimal('factor');
-            $table->string('afmeting');
             $table->timestamps();
         });
     }
@@ -31,7 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('bestelregels');
-        Schema::dropIfExists('bestellingen');
+        //
     }
 };
