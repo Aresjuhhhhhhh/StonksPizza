@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Winkelmandje;
 use App\Models\ExtraIngredientWinkelmandje;
+use App\Models\Ingredient;
+use App\Models\Bestelregel;
 use App\Models\Pizza;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +16,7 @@ class WinkelMandjeController extends Controller
     {
         // Ensure the user is authenticated
         $user = Auth::user();
-    
+
         // Get the items in the shopping cart along with the extra ingredients
         $winkelmandje = Winkelmandje::where('user_id', $user->id)
             ->with('extraIngredients') // Eager load extraIngredients
@@ -22,8 +24,38 @@ class WinkelMandjeController extends Controller
 
         $extraIngredients = ExtraIngredientWinkelmandje::findOrFail($winkelmandje->id);
 
-    
+
         return view('klant.bestelling', ['winkelmandje' => $winkelmandje, 'extraIngredients' => $extraIngredients]);
+    }
+
+    public function toevoegen(Request $request)
+    {
+        // Validate the input
+        $validated = $request->validate([
+            'winkelmandje_id' => 'required|exists:winkelmandje,id',
+            'ingredient_id' => 'required|exists:ingredienten,id',
+        ]);
+    
+        // Create a new record in the pivot table
+        ExtraIngredientWinkelmandje::create([
+            'winkelmandje_id' => $validated['winkelmandje_id'],
+            'ingredient_id' => $validated['ingredient_id'],
+        ]);
+    
+        // Redirect back with a success message
+        return redirect()->back();
+    }
+    public function verwijderen($winkelmandjeId, $ingredientId)
+    {
+        // Find the ExtraIngredientWinkelmandje by winkelmandje_id and ingredient_id
+        $ingredientToRemove = ExtraIngredientWinkelmandje::where('winkelmandje_id', $winkelmandjeId)
+            ->where('ingredient_id', $ingredientId)
+            ->firstOrFail();
+    
+        // Delete the record
+        $ingredientToRemove->delete();
+    
+        return redirect()->back();
     }
     /**
      * Show the form for creating a new resource.
@@ -52,11 +84,18 @@ class WinkelMandjeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
-    }
+        // Find the winkelmandje record
+        $winkelmandje = Winkelmandje::findOrFail($id);
+        $ingredients = Ingredient::all();
+        $pizzaSizes = Bestelregel::all();
 
+        $extraGekozenIngredienten = ExtraIngredientWinkelmandje::where('winkelmandje_id', $id)->get();
+
+        // Pass data to the view
+        return view('klant.editBestelling', compact('winkelmandje', 'ingredients', 'pizzaSizes', 'extraGekozenIngredienten'));
+    }
     /**
      * Update the specified resource in storage.
      */

@@ -68,18 +68,7 @@ class CartController extends Controller
         return redirect()->to('/cart');
     }
 
-    public function edit($id)
-    {
-        // Find the winkelmandje record
-        $winkelmandje = Winkelmandje::findOrFail($id);
-        $ingredients = Ingredient::all();
-        $pizzaSizes = Bestelregel::all();
 
-        $extraGekozenIngredienten = ExtraIngredientWinkelmandje::where('winkelmandje_id', $id)->get();
-
-        // Pass data to the view
-        return view('klant.editBestelling', compact('winkelmandje', 'ingredients', 'pizzaSizes', 'extraGekozenIngredienten'));
-    }
 
 
 

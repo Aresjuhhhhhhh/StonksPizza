@@ -48,20 +48,38 @@
             <button type="submit" class="bg-yellow-400 text-black py-2 px-4 rounded">Opslaan</button>
         </form>
 
-       <div>
-        @foreach ($extraGekozenIngredienten as $gekozenItem)
-                <p>{{ $gekozenItem->ingredient->naam }}</p>
+        <div>
+            <h1>Extra gekozen ingrediënten</h1>
+            @foreach ($extraGekozenIngredienten as $gekozenItem)
+                <p>
+                    {{ $gekozenItem->ingredient->naam }}
+                <form
+                    action="{{ route('winkelmandje.verwijderen', ['winkelmandje' => $gekozenItem->winkelmandje_id, 'ingredient' => $gekozenItem->ingredient->id]) }}"
+                    method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Verwijderen</button>
+                </form>
+                </p>
+            @endforeach
+        </div>
 
-        @endforeach
-       </div>
-
-       <div>
-        @foreach ($ingredients as $item)
+        <div>
+    <h1>Extra Ingredienten</h1>
+    @foreach ($ingredients as $item)
         @if ($item->id != 1)
-        <p>{{$item->naam}}</p>
+            <p>
+                {{ $item->naam }}
+                <form action="{{ route('winkelmandje.toevoegen') }}" method="POST" style="display:inline;">
+                    @csrf
+                    <input type="hidden" name="winkelmandje_id" value="{{ $winkelmandje->id }}">
+                    <input type="hidden" name="ingredient_id" value="{{ $item->id }}">
+                    <button type="submit">Toevoegen</button>
+                </form>
+            </p>
         @endif
-        @endforeach
-       </div>
+    @endforeach
+</div>
 </body>
 
 </html>
