@@ -48,72 +48,89 @@
             }
         };
     </script>
-
-
-
-
+    
     <!-- Content -->
-    <div class="flex-grow flex justify-center items-center">
-        <div
-            class="bestelling-container bg-gray-800 bg-opacity-70 max-w-3xl w-full p-6 rounded-lg shadow-lg text-white">
+    <div class="flex-grow p-5 flex justify-center items-center">
+    <div
+        class="bestelling-container bg-gray-800 bg-opacity-70 max-w-3xl w-full p-6 rounded-lg shadow-lg text-white">
 
-            @if(session('verwijderMessage'))
-                <div id="verwijder-message" class="success-message">
-                    {{ session('verwijderMessage') }}
-                </div>
-            @endif
+        @if(session('verwijderMessage'))
+            <div id="verwijder-message" class="success-message">
+                {{ session('verwijderMessage') }}
+            </div>
+        @endif
 
-            @if($winkelmandjes->isEmpty())
-                <div class="align-text-center">
-                    <p>Je winkelmandje is leeg</p>
-                </div>
-            @else
-                @foreach ($winkelmandjes as $winkelmandje)
-                    <div class="product-div">
-
-                        <div>
-                            <h1>{{ $winkelmandje->product->naam }} -
-                                €{{ number_format($winkelmandje->product->totaalPrijs, 2) }}</h1>
-                            <p>Quantity: {{ $winkelmandje->quantity }}</p>
-                            <p>
-                                Size: {{ $winkelmandje->grootte->afmeting ?? 'Standard' }}
-                                @if($winkelmandje->grootte->afmeting !== 'Normaal')
-                                    - €{{ number_format($winkelmandje->factorKosten(), 2) }}
-                                @endif
-                            </p>
-
-                            @if ($winkelmandje->extraIngredients->isNotEmpty())
-                                <h3>Extra Ingredients:</h3>
-                                <ul>
-                                    @foreach ($winkelmandje->extraIngredients as $extraIngredient)
-                                        <li>{{ $extraIngredient->ingredient->naam }} -
-                                            €{{ number_format($extraIngredient->ingredient->verkoopPrijs, 2) }}</li>
-                                    @endforeach
-                                </ul>
-                            @else
-                                <p>No extra ingredients added.</p>
+        @if($winkelmandjes->isEmpty())
+            <div class="align-text-center">
+                <p>Je winkelmandje is leeg</p>
+            </div>
+        @else
+            @foreach ($winkelmandjes as $winkelmandje)
+                <div class="product-div flex justify-between items-center bg-gray-700 p-4 rounded-lg mb-4 shadow-md">
+                    <div>
+                        <h1 class="text-2xl font-bold">{{ $winkelmandje->product->naam }} - 
+                            €{{ number_format($winkelmandje->product->totaalPrijs, 2) }}
+                        </h1>
+                        <p class="text-2xl">Quantity: {{ $winkelmandje->quantity }}</p>
+                        <p class="text-2xl">
+                            Size: {{ $winkelmandje->grootte->afmeting ?? 'Standard' }}
+                            @if($winkelmandje->grootte->afmeting !== 'Normaal')
+                            ‎ ‎ - ‎ ‎ €{{ number_format($winkelmandje->factorKosten(), 2) }}
                             @endif
-                        </div>
+                        </p>
 
-                        <div>
-                            <form action="{{ route('cart.edit', $winkelmandje->id) }}" method="GET">
-                                @csrf
-                                <button type="submit">✏️</button>
-                            </form>
-                            <form action="{{ route('cart.destroy', $winkelmandje->id) }}" method="POST"
-                                onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">❌</button>
-                            </form>
-                        </div>
-
+                        @if ($winkelmandje->extraIngredients->isNotEmpty())
+                            <h3 class="text-2xl font-semibold mt-2">Extra Ingredients:</h3>
+                            <ul class="text-2xl">
+                                @foreach ($winkelmandje->extraIngredients as $extraIngredient)
+                                    <li>{{ $extraIngredient->ingredient->naam }} ‎ ‎ - 
+                                    ‎ ‎ €{{ number_format($extraIngredient->ingredient->verkoopPrijs, 2) }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p class="text-2xl text-gray-400">No extra ingredients added.</p>
+                        @endif
                     </div>
-                @endforeach
 
-                <div>
-                    <h1>Total: €{{ number_format($totaalPrijs, 2) }}</h1>
+                    <div class="flex gap-2">
+                        <form action="{{ route('cart.edit', $winkelmandje->id) }}" method="GET">
+                            @csrf
+                            <button type="submit" 
+                                class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow">
+                                ✏️ Edit
+                            </button>
+                        </form>
+                        <form action="{{ route('cart.destroy', $winkelmandje->id) }}" method="POST"
+                            onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" 
+                                class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow">
+                                ❌ Delete
+                            </button>
+                        </form>
+                    </div>
                 </div>
+            @endforeach
+            <form>
+            <div class="mt-4 flex flex-col items-center gap-4">
+            <div class="flex items-center gap-4">
+                <label class="flex items-center gap-2">
+                    <input type="radio" name="delivery_option" value="bezorgen" class="text-green-500 focus:ring-green-500">
+                    <span class="text-white font-medium">Bezorgen</span>
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="radio" name="delivery_option" value="afhalen" class="text-green-500 focus:ring-green-500">
+                    <span class="text-white font-medium">Afhalen</span>
+                </label>
+            </div>
+                <h1 class="text-2xl font-bold text-white">Total: €{{ number_format($totaalPrijs, 2) }}</h1>
+                <button type="submit" class="bg-green-500 bestelling-button text-white font-bold py-2 px-4 rounded hover:bg-green-600 shadow-md">
+                    Bestelling plaatsen
+                </button>
+        </div>
+            </form>
             @endif
         </div>
     </div>
