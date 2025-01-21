@@ -10,6 +10,7 @@ use App\Http\Controllers\WinkelmandjeController;
 use App\Http\Controllers\BekijkenController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 
 // Public Routes
 Route::get('/', function () {
@@ -61,6 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/success', function () {
         return view('klant.successPagina');
     })->name('klant.successPagina');
+    Route::get('/success', [OrderController::class, 'showSuccessPage'])->name('klant.successPagina');
 });
 
 require __DIR__ . '/auth.php';

@@ -64,6 +64,12 @@
         <h1>Pizza Punten: {{$UserInfo->pizzaPunten}}</h1>
     </div>
 
+    @if($UserInfo->orders()->where('status', '!=', 'Klaar')->exists())
+        <div>
+            <a href="/success">Track bestelling</a>
+        </div>
+    @endif
+
     <div class="flex-grow p-5 flex justify-center items-center">
         <div
             class="bestelling-container bg-gray-800 bg-opacity-70 max-w-3xl w-full p-6 rounded-lg shadow-lg text-white">

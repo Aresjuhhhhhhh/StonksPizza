@@ -102,7 +102,7 @@ class CartController extends Controller
         }
 
         // Redirect to success page
-        return redirect()->route('klant.successPagina')->with('message', 'Order successfully placed.');
+        return redirect()->route('klant.successPagina')->with('order', $order);
     }
 
 

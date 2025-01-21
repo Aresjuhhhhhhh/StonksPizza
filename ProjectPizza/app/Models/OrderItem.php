@@ -15,7 +15,16 @@ class OrderItem extends Model
         'grootte_id',
         'quantity',
     ];
+    public function product()
+    {
+        return $this->belongsTo(Pizza::class, 'product_id');
+    }
 
+    // Relationship with Bestelregel (size)
+    public function grootte()
+    {
+        return $this->belongsTo(Bestelregel::class, 'grootte_id');
+    }
     // Define the many-to-many relationship with ingredients
     public function ingredients()
     {

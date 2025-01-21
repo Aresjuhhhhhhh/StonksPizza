@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->decimal('totaal_prijs', 8, 2)->default(0);
             $table->string('status');
             $table->string('bestelmethode');
-            $table->date('datum');
+            $table->dateTime('datum');
             $table->timestamps();
         });
     }
