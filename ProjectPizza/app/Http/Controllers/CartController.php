@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Winkelmandje;
 use App\Models\Ingredient;
 use App\Models\Bestelregel;
+use App\Models\User;
 
 
 class CartController extends Controller
@@ -32,7 +33,9 @@ class CartController extends Controller
             return $winkelmandje->factorKosten();
         });
 
-        return view('klant.bestelling', compact('winkelmandjes', 'totaalPrijs', 'factorKosten'));
+        $UserInfo = User::where('id', $user->id)->first();
+
+        return view('klant.bestelling', compact('winkelmandjes', 'totaalPrijs', 'factorKosten', 'UserInfo'));
     }
 
     public function destroy($id)

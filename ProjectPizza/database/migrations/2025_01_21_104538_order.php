@@ -16,10 +16,10 @@ return new class extends Migration {
             $table->foreignId('product_id')->constrained('pizzas')->onDelete('cascade');
             $table->foreignId('grootte_id')->constrained('bestelregels')->onDelete('cascade');
             $table->foreignId('winkelmandje_id')->constrained('winkelmandje')->onDelete('cascade'); 
-            $table->date('datum');
             $table->integer('quantity');
             $table->string('status');
             $table->string('bestelmethode');
+            $table->date('datum');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('order');
     }
 };

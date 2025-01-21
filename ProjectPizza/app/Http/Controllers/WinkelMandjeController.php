@@ -7,6 +7,7 @@ use App\Models\Winkelmandje;
 use App\Models\ExtraIngredientWinkelmandje;
 use App\Models\Ingredient;
 use App\Models\Bestelregel;
+use App\Models\User;
 use App\Models\Pizza;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,6 +23,7 @@ class WinkelMandjeController extends Controller
             ->with('extraIngredients') // Eager load extraIngredients
             ->get();
 
+        $UserInfo = User::where('id', $user->id); 
         $extraIngredients = ExtraIngredientWinkelmandje::findOrFail($winkelmandje->id);
 
 
@@ -107,8 +109,11 @@ class WinkelMandjeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        Winkelmandje::destroy($id);
+
+        session()->flash('verwijderMessage', 'Pizza verwijderd van winkelmandje');
+        return redirect()->back();
     }
 }

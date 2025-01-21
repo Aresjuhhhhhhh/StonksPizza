@@ -48,12 +48,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/winkelmandje/{id}/edit', [WinkelmandjeController::class, 'edit'])->name('winkelmandje.edit');
     Route::post('/winkelmandje/toevoegen', [WinkelmandjeController::class, 'toevoegen'])->name('winkelmandje.toevoegen');
     Route::delete('/winkelmandje/{winkelmandje}/verwijderen/{ingredient}', [WinkelmandjeController::class, 'verwijderen'])->name('winkelmandje.verwijderen');
+    Route::delete('/winkelmandje/{id}', [WinkelmandjeController::class, 'destroy'])->name('winkelmandje.destroy');
 
     // Cart Routes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::get('/cart/{id}/edit', [WinkelmandjeController::class, 'edit'])->name('cart.edit');
     Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 
     // Bekijken Routes
     Route::post('/bekijken/store', [BekijkenController::class, 'store'])->name('bekijken.store');
