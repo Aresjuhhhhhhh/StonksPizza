@@ -113,22 +113,24 @@
                     </div>
                 </div>
             @endforeach
+            <form>
             <div class="mt-4 flex flex-col items-center gap-4">
-        <div class="flex items-center gap-4">
-            <label class="flex items-center gap-2">
-                <input type="radio" name="delivery_option" value="bezorgen" class="text-green-500 focus:ring-green-500">
-                <span class="text-white font-medium">Bezorgen</span>
-            </label>
-            <label class="flex items-center gap-2">
-                <input type="radio" name="delivery_option" value="afhalen" class="text-green-500 focus:ring-green-500">
-                <span class="text-white font-medium">Afhalen</span>
-            </label>
+            <div class="flex items-center gap-4">
+                <label class="flex items-center gap-2">
+                    <input type="radio" name="delivery_option" value="bezorgen" class="text-green-500 focus:ring-green-500">
+                    <span class="text-white font-medium">Bezorgen</span>
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="radio" name="delivery_option" value="afhalen" class="text-green-500 focus:ring-green-500">
+                    <span class="text-white font-medium">Afhalen</span>
+                </label>
+            </div>
+                <h1 class="text-2xl font-bold text-white">Total: €{{ number_format($totaalPrijs, 2) }}</h1>
+                <button type="submit" class="bg-green-500 bestelling-button text-white font-bold py-2 px-4 rounded hover:bg-green-600 shadow-md">
+                    Bestelling plaatsen
+                </button>
         </div>
-            <h1 class="text-2xl font-bold text-white">Total: €{{ number_format($totaalPrijs, 2) }}</h1>
-            <button class="bg-green-500 bestelling-button text-white font-bold py-2 px-4 rounded hover:bg-green-600 shadow-md">
-                Bestelling plaatsen
-            </button>
-        </div>
+            </form>
             @endif
         </div>
     </div>
