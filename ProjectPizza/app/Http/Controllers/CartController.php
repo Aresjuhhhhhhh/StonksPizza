@@ -6,6 +6,8 @@ use App\Models\ExtraIngredientWinkelmandje;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Winkelmandje;
+use App\Models\Ingredient;
+use App\Models\Bestelregel;
 
 
 class CartController extends Controller
@@ -13,23 +15,23 @@ class CartController extends Controller
     public function index()
     {
         $user = Auth::user();
-    
+
         $winkelmandjes = Winkelmandje::with([
             'product',
             'grootte',
             'extraIngredients.ingredient'
         ])->where('user_id', $user->id)->get();
-    
+
         // Bereken het totaalbedrag
         $totaalPrijs = $winkelmandjes->sum(function ($winkelmandje) {
             return $winkelmandje->totaalPrijs();
         });
-    
+
         // Bereken het totaalbedrag voor alleen de factor kosten
         $factorKosten = $winkelmandjes->sum(function ($winkelmandje) {
             return $winkelmandje->factorKosten();
         });
-    
+
         return view('klant.bestelling', compact('winkelmandjes', 'totaalPrijs', 'factorKosten'));
     }
 
@@ -42,9 +44,43 @@ class CartController extends Controller
     }
 
 
+    public function update(Request $request, $id)
+    {
+        // Validate the request data
+        $validated = $request->validate([
+            'quantity' => 'required|integer|min:1',
+            'grootte' => 'required|exists:bestelregels,id',
+            'ingredients' => 'array',
+            'ingredients.*' => 'exists:ingredienten,id',
+        ]);
+    
+        // Find the existing winkelmandje record
+        $winkelmandje = Winkelmandje::findOrFail($id);
+    
+        // Update the winkelmandje details
+        $winkelmandje->update([
+            'quantity' => $validated['quantity'],
+            'grootte_id' => $validated['grootte'],
+        ]);
+    
+        // Sync extra ingredients
+        $winkelmandje->extraIngredients()->sync($validated['ingredients'] ?? []);
+    
+        session()->flash('message', 'Pizza succesvol bijgewerkt!');
+        return redirect()->to('/menu');
+    }
+
     public function edit($id)
     {
         $winkelmandje = Winkelmandje::findOrFail($id);
-        return view('klant.editBestelling', compact('winkelmandje'));
+
+        // Retrieve related data (adjust as needed)
+        $ingredients = Ingredient::all();
+        $pizzaSizes = Bestelregel::all();
+
+        // Pass all data to the view
+        return view('klant.editBestelling', compact('winkelmandje', 'ingredients', 'pizzaSizes'));
     }
+
+
 }

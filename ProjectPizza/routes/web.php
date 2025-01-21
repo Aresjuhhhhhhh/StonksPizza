@@ -41,9 +41,11 @@ Route::middleware('auth')->group(function () {
     route::get('/cart', [CartController::class, 'index'])->name('klant.bestelling');
     Route::post('/bekijken/store', [BekijkenController::class, 'store'])->name('bekijken.store');
     Route::get('/cart/{id}/edit', [CartController::class, 'edit'])->name('cart.edit');
-Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::get('/winkelmandje/{id}/edit', [CartController::class, 'edit'])->name('cart.edit');
+
 
 
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
