@@ -47,6 +47,15 @@
                 }, 2000);
             }
         };
+
+        window.onload = function () {
+            const successMessage = document.getElementById('message');
+            if (successMessage) {
+                setTimeout(function () {
+                    successMessage.style.display = 'none';
+                }, 2000);
+            }
+        };
     </script>
 
     <!-- Content -->
@@ -62,6 +71,12 @@
             @if(session('verwijderMessage'))
                 <div id="verwijder-message" class="success-message">
                     {{ session('verwijderMessage') }}
+                </div>
+            @endif
+
+            @if(session('message'))
+                <div id="message" class="success-message">
+                    {{ session('message') }}
                 </div>
             @endif
 
@@ -118,9 +133,11 @@
                         </div>
                     </div>
                 @endforeach
-                <form>
+                <form action="{{ route('cart.placeOrder') }}" method="POST">
+                    @csrf
                     <div class="mt-4 flex flex-col items-center gap-4">
-                        <div class="flex items-center gap-4">
+                        <!-- Delivery Method (Bezorgen or Afhalen) -->
+                        <div class="flex items-center gap-4 mt-4">
                             <label class="flex items-center gap-2">
                                 <input type="radio" name="delivery_option" value="bezorgen"
                                     class="text-green-500 focus:ring-green-500">
@@ -132,9 +149,16 @@
                                 <span class="text-white font-medium">Afhalen</span>
                             </label>
                         </div>
-                        <h1 class="text-2xl font-bold text-white">Total: €{{ number_format($totaalPrijs, 2) }}</h1>
+
+                        <!-- Total Price (hidden input field to pass totaalPrijs) -->
+                        <input type="hidden" name="totaal_prijs" value="{{ $totaalPrijs }}">
+
+                        <!-- Display Total Price -->
+                        <h1 class="text-2xl font-bold text-white mt-4">Total: €{{ number_format($totaalPrijs, 2) }}</h1>
+
+                        <!-- Place Order Button -->
                         <button type="submit"
-                            class="bg-green-500 bestelling-button text-white font-bold py-2 px-4 rounded hover:bg-green-600 shadow-md">
+                            class="bg-green-500 bestelling-button text-white font-bold py-2 px-4 rounded hover:bg-green-600 shadow-md mt-4">
                             Bestelling plaatsen
                         </button>
                     </div>

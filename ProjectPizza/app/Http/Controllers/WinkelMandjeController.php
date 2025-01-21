@@ -101,9 +101,28 @@ class WinkelMandjeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // Validate the request data
+        $validated = $request->validate([
+            'quantity' => 'required|integer|min:1',
+            'grootte' => 'required|exists:bestelregels,id',
+            'ingredients' => 'array',
+            'ingredients.*' => 'exists:ingredienten,id',
+        ]);
+
+        // Find the existing winkelmandje record
+        $winkelmandje = Winkelmandje::findOrFail($id);
+
+        // Update the winkelmandje details
+        $winkelmandje->update([
+            'quantity' => $validated['quantity'],
+            'grootte_id' => $validated['grootte'],
+        ]);
+
+
+        session()->flash('message', 'Pizza succesvol bijgewerkt!');
+        return redirect()->to('/cart');
     }
 
     /**

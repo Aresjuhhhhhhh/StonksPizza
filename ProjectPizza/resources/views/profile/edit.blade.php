@@ -37,9 +37,33 @@
     </div>
     <!--End of header-->
 
+
+    <script>
+        window.onload = function () {
+            const errorMessage = document.getElementById('error-message');
+
+            if (errorMessage) {
+                setTimeout(function () {
+                    errorMessage.style.display = 'none';
+                }, 4000); // Errors might need more time to read
+            }
+        };
+    </script>
+
+
     <!-- Content -->
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            @if ($errors->any())
+                <div id="error-message"
+                    style="background-color: #f44336; color: white; padding: 15px; text-align: center; font-size: 18px; margin-top: 10px; width: 30%; position: relative; z-index: 10; border-radius: 5px; margin-left: auto; margin-right: auto;">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="p-4 bg-gray-800 bg-opacity-70 text-white sm:p-8 shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')

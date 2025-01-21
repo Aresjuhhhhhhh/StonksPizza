@@ -10,13 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('order', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('product_id')->constrained('pizzas')->onDelete('cascade');
-            $table->foreignId('grootte_id')->constrained('bestelregels')->onDelete('cascade');
-            $table->foreignId('winkelmandje_id')->constrained('winkelmandje')->onDelete('cascade'); 
-            $table->integer('quantity');
+            $table->decimal('totaal_prijs', 8, 2)->default(0);
             $table->string('status');
             $table->string('bestelmethode');
             $table->date('datum');

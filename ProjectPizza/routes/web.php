@@ -49,14 +49,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/winkelmandje/toevoegen', [WinkelmandjeController::class, 'toevoegen'])->name('winkelmandje.toevoegen');
     Route::delete('/winkelmandje/{winkelmandje}/verwijderen/{ingredient}', [WinkelmandjeController::class, 'verwijderen'])->name('winkelmandje.verwijderen');
     Route::delete('/winkelmandje/{id}', [WinkelmandjeController::class, 'destroy'])->name('winkelmandje.destroy');
+    Route::put('/winkelmandje/update/{id}', [WinkelmandjeController::class, 'update'])->name('winkelmandje.update');
 
     // Cart Routes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::get('/cart/{id}/edit', [WinkelmandjeController::class, 'edit'])->name('cart.edit');
-    Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-
+    Route::post('/cart/order', [CartController::class, 'placeOrder'])->name('cart.placeOrder');
     // Bekijken Routes
     Route::post('/bekijken/store', [BekijkenController::class, 'store'])->name('bekijken.store');
+
+    //sucessPagina
+    Route::get('/success', function () {
+        return view('klant.successPagina');
+    })->name('klant.successPagina');
 });
 
 require __DIR__ . '/auth.php';

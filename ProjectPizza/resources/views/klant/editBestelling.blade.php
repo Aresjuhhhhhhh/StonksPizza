@@ -21,7 +21,7 @@
         <p class="text-gray-200 mb-2">{{ $winkelmandje->product->beschrijving }}</p>
         <p class="text-4xl font-semibold text-yellow-300 mb-6">€{{ $winkelmandje->product->totaalPrijs }}</p>
         <!-- Size and Quantity Form -->
-        <form method="POST" action="{{ route('cart.update', $winkelmandje->id) }}">
+        <form method="POST" action="{{ route('winkelmandje.update', $winkelmandje->id) }}">
             @csrf
             @method('PUT')
             <!-- Quantity -->

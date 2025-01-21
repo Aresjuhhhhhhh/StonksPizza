@@ -40,6 +40,8 @@ class Winkelmandje extends Model
         return $this->hasMany(ExtraIngredientWinkelmandje::class, 'winkelmandje_id');
     }
 
+    
+
     public function totaalPrijs()
     {
         $pizzaGrootte = [
