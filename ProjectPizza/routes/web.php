@@ -63,11 +63,16 @@ Route::middleware('auth')->group(function () {
         return view('klant.successPagina');
     })->name('klant.successPagina');
     Route::get('/success', [OrderController::class, 'showSuccessPage'])->name('klant.successPagina');
+    Route::put('/orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 
-    // Manager Routes
-    Route::get('/medewerker', [MedewerkerController::class, 'index']);
+        // Manager Routes
+        Route::get('/medewerker', [MedewerkerController::class, 'index'])->name('medewerker.index');
+        Route::get('/werknemers/show/{order}', [MedewerkerController::class, 'show'])->name('werknemers.show');
+        Route::put('/werknemers/update/{order}', [MedewerkerController::class, 'update'])->name('werknemers.update');
+        Route::delete('/werknemers/orders/{order}', [MedewerkerController::class, 'destroy'])->name('werknemers.destroy');
+
+
 });
-
 
 
 require __DIR__ . '/auth.php';

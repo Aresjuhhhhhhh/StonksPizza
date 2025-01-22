@@ -11,6 +11,7 @@
 <body class="bodyColor min-h-screen flex flex-col items-center bg-gray-900 text-white bg-cover bg-center p-4"
     style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/abstractPopArtBG.avif');">
     <div class="w-full text-left mb-6">
+        
         <a href="/Home">Terug</a>
     </div>
     <div class="rounded-lg shadow-md p-6 border-2 border-black max-w-3xl w-full" style="background-color: #e4e6d4;">
@@ -66,6 +67,18 @@
         <p><span class="font-semibold">Woonplaats:</span>Eindhoven</p>
         @endif
     </div>
+
+    <div>
+    @if ($order->status == 'pending')
+        <form action="{{ route('orders.cancel', ['order' => $order->id]) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <button type="submit" onclick="return confirm('Weet je zeker dat je deze bestelling wilt annuleren?')">
+                Bestelling Annuleren
+            </button>
+        </form>
+    @endif
+</div>
 </body>
 
 </html>

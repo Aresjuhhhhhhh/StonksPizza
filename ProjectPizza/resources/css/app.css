@@ -79,7 +79,20 @@
     justify-content: center;
 }
 
-
+.success-message {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px; /* Adjusted space from header */
+    width: 30%;
+    position: relative;
+    z-index: 10;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
 .overOnsimg
 {
     margin-top: 40px;

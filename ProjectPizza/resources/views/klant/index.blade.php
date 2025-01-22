@@ -30,8 +30,22 @@
         </header>
     </div>
     <!--End of header-->
-
+    <script>
+            window.onload = function () {
+            const successMessage = document.getElementById('message');
+            if (successMessage) {
+                setTimeout(function () {
+                    successMessage.style.display = 'none';
+                }, 2000);
+            }
+        };
+</script>
     <!--Body-->
+    @if(session('deletemessage'))
+                <div id="message" class="success-message">
+                    {{ session('deletemessage') }}
+                </div>
+            @endif
     <div class="relative homePageImage">
         <img src="{{ asset('images/HomePageImage.png') }}" alt="pizza" class="hpImg w-full">
         <h1

@@ -19,7 +19,7 @@ class OrderController extends Controller
         $order = Order::where('user_id', $user->id)
             ->orderBy('created_at', 'desc')
             ->first();
-            $formattedDate = Carbon::parse($order->datum)->format('H:i');
+        $formattedDate = Carbon::parse($order->datum)->format('H:i');
 
         $orderSummary = OrderItem::with('product', 'grootte', 'ingredients') // Eager load the ingredients
             ->where('order_id', $order->id)
@@ -27,5 +27,22 @@ class OrderController extends Controller
 
         // Pass the order data to the view
         return view('klant.successPagina', compact('order', 'orderSummary', 'userInfo', 'formattedDate'));
+    }
+
+    public function cancel(string $id)
+    {
+        $user = auth()->user();
+    
+        // Ensure only the owner of the order can cancel it
+        $order = Order::where('id', $id)->where('user_id', $user->id)->firstOrFail();
+    
+        // Delete the order
+        $order->delete();
+    
+        // Flash a success message
+        session()->flash('deletemessage', 'Bestelling verwijderd!');
+    
+        // Redirect back to the previous page
+        return view('klant.index');
     }
 }
