@@ -142,7 +142,6 @@
                 <form action="{{ route('cart.placeOrder') }}" method="POST">
                     @csrf
                     <div class="mt-4 flex flex-col items-center gap-4">
-                        <!-- Delivery Method (Bezorgen or Afhalen) -->
                         <div class="flex items-center gap-4 mt-4">
                             <label class="flex items-center gap-2">
                                 <input type="radio" name="delivery_option" value="bezorgen"
@@ -156,13 +155,10 @@
                             </label>
                         </div>
 
-                        <!-- Total Price (hidden input field to pass totaalPrijs) -->
                         <input type="hidden" name="totaal_prijs" value="{{ $totaalPrijs }}">
 
-                        <!-- Display Total Price -->
                         <h1 class="text-2xl font-bold text-white mt-4">Total: €{{ number_format($totaalPrijs, 2) }}</h1>
 
-                        <!-- Place Order Button -->
                         <button type="submit"
                             class="bg-green-500 bestelling-button text-white font-bold py-2 px-4 rounded hover:bg-green-600 shadow-md mt-4">
                             Bestelling plaatsen
