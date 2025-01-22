@@ -63,6 +63,11 @@ Route::middleware('auth')->group(function () {
         return view('klant.successPagina');
     })->name('klant.successPagina');
     Route::get('/success', [OrderController::class, 'showSuccessPage'])->name('klant.successPagina');
+
+    // Manager Routes
+    Route::get('/medewerker', [MedewerkerController::class, 'index']);
 });
+
+
 
 require __DIR__ . '/auth.php';

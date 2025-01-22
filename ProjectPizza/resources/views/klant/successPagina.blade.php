@@ -20,7 +20,7 @@
                 <p class="mb-4">Uw bestelling is succesvol geplaatst.</p>
                 <div class="text-lg mb-4">
                     <p class="text-yellow-300 text-2xl">
-                        <span class="font-semibold">Totaal:</span> {{$order->totaal_prijs}}
+                        <span class="font-semibold">Totaal:</span> €{{$order->totaal_prijs}}
                     </p>
                     <p class="text-2xl">
                         <span class="font-semibold">Status:</span> {{$order->status}}
@@ -55,9 +55,16 @@
         @endforeach
     </div>
     <div class="rounded-lg shadow-md border-2 border-black p-6 mt-6 max-w-3xl w-full" style="background-color: #e4e6d4;">
+        @if($order->bestelmethode == 'bezorgen')
         <h2 class="text-3xl text-yellow-300 font-bold mb-4">Bezorg Informatie</h2>
         <p><span class="font-semibold">Adres:</span> {{ $userInfo->adres }}</p>
         <p><span class="font-semibold">Woonplaats:</span> {{ $userInfo->woonplaats }}</p>
+
+        @elseif ($order->bestelmethode == 'afhalen')
+        <h2 class="text-3xl text-yellow-300 font-bold mb-4">Afhalen Informatie</h2>
+        <p><span class="font-semibold">Adres:</span> StonksPizzaStraat 96</p>
+        <p><span class="font-semibold">Woonplaats:</span>Eindhoven</p>
+        @endif
     </div>
 </body>
 

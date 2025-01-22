@@ -12,7 +12,8 @@ class MedewerkerController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('werknemers.index');
     }
 
     /**

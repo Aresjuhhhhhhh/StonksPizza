@@ -35,7 +35,7 @@
                 <select id="grootte" name="grootte" class="p-2 rounded w-full bg-gray-700 text-white" required>
                     @foreach ($pizzaSizes as $size)
                         <option value="{{ $size->id }}" {{ $winkelmandje->grootte_id == $size->id ? 'selected' : '' }}>
-                            {{ $size->naam }}
+                            {{ $size->afmeting }}
                         </option>
                     @endforeach
                 </select>
