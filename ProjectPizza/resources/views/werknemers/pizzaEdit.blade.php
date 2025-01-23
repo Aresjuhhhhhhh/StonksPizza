@@ -25,7 +25,8 @@
                     <li><button class="hover:underline decoration-yellow-300"><a
                                 href="{{route('werknemers.ingredientenIndex')}}">Ingredienten Bekijken</a></button></li>
                     <li><button class="hover:underline decoration-yellow-300"><a
-                                href="{{route('werknemers.createIngredienten')}}">Ingredienten Toevoegen</a></button></li>
+                                href="{{route('werknemers.createIngredienten')}}">Ingredienten Toevoegen</a></button>
+                    </li>
                     <li>
                         <form class="LogoutKnop" method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -42,23 +43,38 @@
     </div>
 
 
-    <div>
+    <div class="bg-black bg-opacity-70 p-6 mt-3 mx-3 rounded-lg shadow-lg space-y-4 text-white">
         <form action="{{ route('pizza.pizzaUpdate', $pizza->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <label for="naam">Naam</label>
-            <input class=" text-black " type="text" name="naam" id="naam" value="{{$pizza->naam}}" required>
+            <div>
+                <label for="naam" class="block text-white">Naam</label>
+                <input class="text-black w-full p-2 rounded" type="text" name="naam" id="naam"
+                    value="{{ $pizza->naam }}" required>
+            </div>
 
-            <label for="beschrijving">Beschrijving</label>
-            <input class="text-black" type="text" name="beschrijving" value="{{$pizza->beschrijving}}" id="beschrijving"
-                required style="width: fit-content; min-width: 250px;">
-            <label for="prijs">Prijs</label>
-            <input class=" text-black " type="number" name="prijs" id="prijs" value="{{$pizza->totaalPrijs}}" required>
+            <div>
+                <label for="beschrijving" class="block text-white">Beschrijving</label>
+                <input class="text-black w-full p-2 rounded" type="text" name="beschrijving"
+                    value="{{ $pizza->beschrijving }}" id="beschrijving" required>
+            </div>
 
-            <label for="afbeelding">Afbeelding</label>
-            <input type="file" name="afbeelding" id="afbeelding" accept="public/image/*">
-            <br>
-            <button type="submit">Opslaan</button>
+            <div>
+                <label for="prijs" class="block text-white">Prijs</label>
+                <input class="text-black w-full p-2 rounded" type="number" name="prijs" id="prijs"
+                    value="{{ $pizza->totaalPrijs }}" required>
+            </div>
+
+            <div>
+                <label for="afbeelding" class="block text-white">Afbeelding</label>
+                <input type="file" name="afbeelding" id="afbeelding" accept="public/image/*"
+                    class="w-full p-2 rounded bg-gray-700 text-white">
+            </div>
+
+            <div class="flex justify-end">
+                <button type="submit"
+                    class="bg-yellow-400 text-black font-bold py-2 px-4 rounded-lg shadow-lg hover:bg-yellow-500 transition duration-200">Opslaan</button>
+            </div>
         </form>
 
 
