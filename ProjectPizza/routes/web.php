@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/werknemers/orders/{order}', [MedewerkerController::class, 'destroy'])->name('werknemers.destroy');
     Route::get('/werknemers/ingredientenIndex', [MedewerkerController::class, 'ingredientenIndex'])->name('werknemers.ingredientenIndex');
     Route::get('/werknemers/createIngredienten', [MedewerkerController::class, 'createIngredienten'])->name('werknemers.createIngredienten');
+    Route::post('/werknemers/ingredientToevoegenInDb', [MedewerkerController::class, 'ingredientToevoegenInDb'])->name('werknemers.ingredientToevoegenInDb');
 
     Route::get('/pizza/edit/{id}', [MedewerkerController::class, 'pizzaEdit'])->name('werknemers.pizzaEdit');
 

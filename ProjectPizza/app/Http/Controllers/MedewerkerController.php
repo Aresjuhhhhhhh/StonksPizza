@@ -51,6 +51,21 @@ class MedewerkerController extends Controller
         //
     }
 
+    public function ingredientToevoegenInDb(Request $request)
+    {
+        $request->validate([
+            'ingredient' => 'required|string|max:255',
+            'prijs' => 'required|numeric|min:0',
+        ]);
+
+        Ingredient::create([
+            'naam' => $request->input('ingredient'),
+            'verkoopPrijs' => $request->input('prijs'),
+        ]);
+
+        return redirect()->route('werknemers.ingredientenIndex');
+    }
+
     /**
      * Store a newly created resource in storage.
      */

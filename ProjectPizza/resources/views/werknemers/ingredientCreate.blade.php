@@ -10,7 +10,8 @@
     <link rel="icon" href="{{ asset('images/PizzarriaIcon.png') }}" type="image/png">
 </head>
 
-<body>
+<body class="bodyColor min-h-screen flex flex-col bg-cover bg-center"
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/abstractPopArtBG.avif');">
     <div class="header-container2">
         <header>
             <nav>
@@ -38,6 +39,18 @@
 
         </header>
     </div>
-</body>
 
+    <div>
+        <h1 class="text-5xl text-center font-bold m-8">Ingredienten Toevoegen</h1>
+        <form class="flex flex-col items-center" action="{{route('werknemers.ingredientToevoegenInDb')}}" method="POST" >
+            @csrf
+            <label for="ingredient">Ingredient Naam:</label>
+            <input class="text-black" type="text" name="ingredient" id="ingredient" required>
+            <label for="prijs">Prijs:</label>
+            <input class="text-black" type="number" step="0.01" name="prijs" id="prijs" required>
+            <button class="bg-yellow-300 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded mt-4"
+                type="submit">Toevoegen</button>
+        </form>
+    </div>
+</body>
 </html>
