@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Ingredient;
 use App\Models\Pizza;
 use Carbon\Carbon;
 
@@ -80,6 +81,12 @@ class MedewerkerController extends Controller
         //
     }
 
+    public function showPizzas()
+    {
+        $pizzas = Pizza::all();
+
+        return view('werknemers.pizzaShow', compact('pizzas'));
+    }
     /**
      * Update the specified resource in storage.
      */
@@ -109,7 +116,9 @@ class MedewerkerController extends Controller
             return redirect('/login')->with('error', 'Unauthorized access.');
         }
 
-        return view('werknemers.pizzaCreate', compact('user'));
+        $Ingredienten = Ingredient::all();
+
+        return view('werknemers.pizzaCreate', compact('user', 'Ingredienten'));
     }
 
     public function pizzaToevoegen(Request $request)
@@ -119,28 +128,39 @@ class MedewerkerController extends Controller
             'naam' => 'required|string|max:255',
             'beschrijving' => 'required|string|max:1000',
             'prijs' => 'required|numeric|min:0',
-            'afbeelding' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validates image type and size
+            'afbeelding' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'ingredients' => 'nullable|array', 
+            'ingredients.*' => 'exists:ingredienten,id', 
         ]);
     
         if ($request->hasFile('afbeelding')) {
-            $originalFileName = $request->file('afbeelding')->getClientOriginalName(); // Get the original file name
+            $originalFileName = $request->file('afbeelding')->getClientOriginalName(); 
         
-            // Save the file in the 'public/images' directory
-            $destinationPath = public_path('images'); // Path to 'public/images'
+            
+            $destinationPath = public_path('images'); 
             $request->file('afbeelding')->move($destinationPath, $originalFileName);
         
-            $afbeeldingNaam = $originalFileName; // Use the original file name
+            $afbeeldingNaam = $originalFileName; 
         }
     
-        // Save the pizza details to the database
-        Pizza::create([
+     
+        $pizza = Pizza::create([
             'naam' => $validatedData['naam'],
             'beschrijving' => $validatedData['beschrijving'],
             'totaalPrijs' => $validatedData['prijs'],
-            'imagePath' => $afbeeldingNaam, // Store the original file name in the database
+            'imagePath' => $afbeeldingNaam, 
         ]);
     
-        return redirect()->back();
+      
+        if (!empty($validatedData['ingredients']))
+        {
+            
+            $pizza->ingredienten()->attach($validatedData['ingredients']);
+        }
+    
+        $pizzas = Pizza::all();
+    
+        return view('werknemers.pizzaShow',compact('pizzas'));
     }
     /**
      * Remove the specified resource from storage.

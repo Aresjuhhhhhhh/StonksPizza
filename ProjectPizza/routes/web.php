@@ -70,6 +70,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/werknemers/show/{order}', [MedewerkerController::class, 'show'])->name('werknemers.show');
         Route::get('/werknemers/pizzaToevoegen', [MedewerkerController::class, 'pizzaToevoegenIndex'])->name('werknemers.pizzaToevoegenIndex');
         Route::post('/werknemers/pizzaToevoegen', [MedewerkerController::class, 'pizzaToevoegen'])->name('werknemers.pizzaToevoegen');
+        Route::get('/werknemers/showPizzas', [MedewerkerController::class, 'showPizzas'])->name('werknemers.showPizzas');
         Route::put('/werknemers/update/{order}', [MedewerkerController::class, 'update'])->name('werknemers.update');
         Route::delete('/werknemers/orders/{order}', [MedewerkerController::class, 'destroy'])->name('werknemers.destroy');
 
