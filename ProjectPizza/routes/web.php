@@ -80,10 +80,13 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::put('/pizza/{id}', [MedewerkerController::class, 'pizzaUpdate'])->name('pizza.update');
+    Route::put('/pizza/{id}', [MedewerkerController::class, 'pizzaUpdate'])->name('pizza.pizzaUpdate');
 
 
     Route::delete('/pizza/{id}', [MedewerkerController::class, 'pizzaDelete'])->name('pizza.destroy');
+
+    Route::post('pizza/{id}/ingredienten', [MedewerkerController::class, 'ingredientToevoegen'])->name('pizza.ingredientToevoegen');
+    Route::delete('pizza/{pizza}/ingredienten/{ingredient}', [MedewerkerController::class, 'ingredientVerwijderen'])->name('pizza.ingredientVerwijderen');
 
 
 });

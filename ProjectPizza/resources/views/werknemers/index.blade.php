@@ -60,7 +60,7 @@
     <h1 class="text-5xl text-center font-bold m-8">Actieve Bestellingen</h1>
     @if($orders->isEmpty())
         <div class="m-8 w-full max-w-72 bg-black bg-opacity-70 shadow-lg rounded-lg p-6">
-            <h1 class="text-center text-lg font-medium text-gray-600">Geen actieve bestellingen</h1>
+            <h1 class="text-center text-lg font-medium text-white">Geen actieve bestellingen</h1>
         </div>
     @endif
 
