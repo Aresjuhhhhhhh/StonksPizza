@@ -78,37 +78,41 @@ class MedewerkerController extends Controller
      */
     public function edit($id)
     {
-        $pizza = Pizza::findOrFail($id);
-    
-        $ingredients = Ingredient::all(); // This will fetch all ingredients
-    
-        return view('werknemers.pizzaEdit', compact('pizza', 'ingredients')); // Pass 'ingredients' to the view
+
     }
 
     public function pizzaUpdate(Request $request, $id)
     {
-        $pizza = Pizza::findOrFail($id);
-
-        // Validate the request data
+        // Validate the request
         $validatedData = $request->validate([
             'naam' => 'required|string|max:255',
             'beschrijving' => 'required|string|max:1000',
             'prijs' => 'required|numeric|min:0',
-            'afbeelding' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'afbeelding' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'ingredients' => 'nullable|array',
+            'ingredients.*' => 'exists:ingredienten,id',
         ]);
 
-        // Update pizza details
-        $pizza->update($validatedData);
+        $pizza = Pizza::findOrFail($id);
+        $pizza->naam = $validatedData['naam'];
+        $pizza->beschrijving = $validatedData['beschrijving'];
+        $pizza->totaalPrijs = $validatedData['prijs'];
 
-        // If an image is uploaded, save it
+        // Handle the image upload if provided
         if ($request->hasFile('afbeelding')) {
-            $originalFileName = $request->file('afbeelding')->getClientOriginalName();
-            $destinationPath = public_path('images');
-            $request->file('afbeelding')->move($destinationPath, $originalFileName);
-            $pizza->update(['imagePath' => $originalFileName]);
+            $imagePath = $request->file('afbeelding')->store('images', 'public');
+            $pizza->imagePath = $imagePath;
         }
 
-        return redirect()->route('werknemers.index')->with('success', 'Pizza updated successfully!');
+        $pizza->save();
+
+        // Update ingredients if provided
+        if (!empty($validatedData['ingredients'])) {
+            $pizza->ingredienten()->sync($validatedData['ingredients']);
+        }
+
+
+        return redirect()->route('werknemers.showPizzas');
     }
 
     public function pizzaDelete($id)
@@ -123,13 +127,46 @@ class MedewerkerController extends Controller
     public function pizzaEdit($id)
     {
         $pizza = Pizza::findOrFail($id);
-        return view('werknemers.pizzaEdit', compact('pizza'));
+        $ingredienten = Ingredient::all();
+
+        $gekozenIngredienten = $pizza->ingredienten;
+
+
+        return view('werknemers.pizzaEdit', compact('pizza', 'ingredienten', 'gekozenIngredienten'));
     }
+
+
     public function showPizzas()
     {
         $pizzas = Pizza::all();
 
         return view('werknemers.pizzaShow', compact('pizzas'));
+    }
+
+    public function ingredientToevoegen(Request $request, $id)
+    {
+        $pizza = Pizza::findOrFail($id);
+
+        // Validate the ingredient ID
+        $request->validate([
+            'ingredient_id' => 'required|exists:ingredienten,id'
+        ]);
+
+        // Attach the ingredient to the pizza using the pivot table
+        $pizza->ingredienten()->attach($request->ingredient_id);
+
+        return redirect()->route('werknemers.pizzaEdit', $id);
+    }
+
+    public function ingredientVerwijderen($pizzaId, $ingredientId)
+    {
+        $pizza = Pizza::findOrFail($pizzaId);
+        $ingredient = Ingredient::findOrFail($ingredientId);
+
+        // Detach the ingredient from the pizza using the pivot table
+        $pizza->ingredienten()->detach($ingredient);
+
+        return redirect()->route('werknemers.pizzaEdit', $pizzaId)->with('success', 'Ingredient verwijderd!');
     }
     /**
      * Update the specified resource in storage.
