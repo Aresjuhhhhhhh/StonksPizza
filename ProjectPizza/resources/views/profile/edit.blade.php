@@ -86,7 +86,14 @@
                     @include('profile.partials.update-phone-number-form')
                 </div>
             </div>
-            <div class="p-4 bg-gray-800 bg-opacity-70 text-white sm:p-8  shadow sm:rounded-lg">
+            <div class="p-4 bg-gray-800 bg-opacity-70 text-white shadow sm:rounded-lg">
+                <form class="LogoutKnop" method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button :href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </button>
+                </form>
                 <div class="max-w-xl">
                     @include('profile.partials.delete-user-form')
                 </div>
@@ -94,16 +101,6 @@
         </div>
     </div>
 
-
-    <!-- Authentication -->
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-
-        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-            {{ __('Log Out') }}
-        </x-dropdown-link>
-    </form>
     <!-- End of content -->
 
     <!--Footer-->

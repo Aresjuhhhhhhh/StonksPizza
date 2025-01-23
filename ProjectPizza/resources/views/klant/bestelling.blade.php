@@ -59,11 +59,6 @@
     </script>
 
     <!-- Content -->
-
-    <div>
-        <h1>Pizza Punten: {{$UserInfo->pizzaPunten}}</h1>
-    </div>
-
     @if($UserInfo->orders()->where('status', '!=', 'Klaar')->exists())
         <div>
             <a href="/success">Track bestelling</a>
@@ -158,7 +153,9 @@
                         <input type="hidden" name="totaal_prijs" value="{{ $totaalPrijs }}">
 
                         <h1 class="text-2xl font-bold text-white mt-4">Total: €{{ number_format($totaalPrijs, 2) }}</h1>
-
+                        <div>
+                            <h1>Pizza Punten: {{$UserInfo->pizzaPunten}}</h1>
+                        </div>
                         <button type="submit"
                             class="bg-green-500 bestelling-button text-white font-bold py-2 px-4 rounded hover:bg-green-600 shadow-md mt-4">
                             Bestelling plaatsen

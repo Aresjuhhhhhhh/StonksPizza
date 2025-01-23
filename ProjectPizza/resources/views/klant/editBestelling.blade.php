@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aanpassen</title>
     @vite('resources/css/app.css')
+    <link rel="icon" href="{{ asset('images/PizzarriaIcon.png') }}" type="image/png">
 </head>
 
 <body class="bodyColor min-h-screen flex flex-col bg-cover bg-center text-gray-100"
