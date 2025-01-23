@@ -41,7 +41,7 @@
 
     <main class="p-8 space-y-8">
         <div class="text-white text-2xl">
-            <a href="{{ route('medewerker.index') }}" class="hover:underline decoration-yellow-400">Terug naar
+            <a href="{{ route('medewerker.index') }}">Terug naar
                 overzicht</a>
         </div>
 
