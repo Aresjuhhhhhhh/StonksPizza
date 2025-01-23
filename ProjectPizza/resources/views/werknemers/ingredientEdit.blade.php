@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingredienten</title>
+    <title>Ingredient aanpasen</title>
     @vite('resources/css/index.css')
     @vite('resources/css/app.css')
     <link rel="icon" href="{{ asset('images/PizzarriaIcon.png') }}" type="image/png">
@@ -22,10 +22,9 @@
                     <li><button class="hover:underline decoration-yellow-300"><a
                                 href="{{route('werknemers.showPizzas')}}">Pizza's Bekijken</a></button></li>
                     <li><button class="hover:underline decoration-yellow-300"><a
-                                href="{{ route('medewerker.index') }}">Terug naar overzicht</a></button></li>
+                                href="{{route('werknemers.ingredientenIndex')}}">Ingredienten Bekijken</a></button></li>
                     <li><button class="hover:underline decoration-yellow-300"><a
-                                href="{{route('werknemers.createIngredienten')}}">Ingredienten Toevoegen</a></button>
-                    </li>
+                                href="{{ route('medewerker.index') }}">Terug naar overzicht</a></button></li>
                     <li>
                         <form class="LogoutKnop" method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -41,36 +40,19 @@
         </header>
     </div>
 
-
     <div>
-        @foreach ($ingredienten as $ingredient)
-        <h1>
-            {{$ingredient->naam}}
-        </h1>
-        <h2>
-            {{$ingredient->verkoopPrijs}}
-        </h2>
-        <div class="flex gap-2 justify-center mt-4">
-                        <!-- Edit Button -->
-                        <form action="{{ route('werknemers.ingredientEditIndex', $ingredient->id) }}" method="GET">
-                            @csrf
-                            <button type="submit"
-                                class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow">
-                                ✏️ Edit
-                            </button>
-                        </form>
-
-                        <!-- Delete Button -->
-                        <form action="{{ route('werknemers.ingredientVerwijderenVanDb', $ingredient->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded shadow">
-                                ❌  Delete
-                            </button>
-                        </form>
-                    </div>
-        @endforeach
+        <form action="{{ route('werknemers.ingredientEdit', $ingredient->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <label for="ingredient">Ingredient Naam:</label>
+            <input class="text-black" type="text" value="{{$ingredient->naam}}" name="ingredient" id="ingredient"
+                required>
+            <label for="prijs">Prijs:</label>
+            <input class="text-black" type="number" value="{{$ingredient->verkoopPrijs}}" step="0.01" name="prijs"
+                id="prijs" required>
+            <button class="bg-yellow-300 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded mt-4"
+                type="submit">Aanpassen</button>
+        </form>
     </div>
 </body>
 

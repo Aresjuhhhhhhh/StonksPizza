@@ -76,18 +76,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/werknemers/ingredientenIndex', [MedewerkerController::class, 'ingredientenIndex'])->name('werknemers.ingredientenIndex');
     Route::get('/werknemers/createIngredienten', [MedewerkerController::class, 'createIngredienten'])->name('werknemers.createIngredienten');
     Route::post('/werknemers/ingredientToevoegenInDb', [MedewerkerController::class, 'ingredientToevoegenInDb'])->name('werknemers.ingredientToevoegenInDb');
-
     Route::get('/pizza/edit/{id}', [MedewerkerController::class, 'pizzaEdit'])->name('werknemers.pizzaEdit');
-
-
-
+    Route::put('/werknemers/ingredient/{id}', [MedewerkerController::class, 'EditIngredient'])->name('werknemers.ingredientEdit');
+    Route::get('/ingredient/edit/{id}', [MedewerkerController::class, 'ingredientEditIndex'])->name('werknemers.ingredientEditIndex');
     Route::put('/pizza/{id}', [MedewerkerController::class, 'pizzaUpdate'])->name('pizza.pizzaUpdate');
-
-
     Route::delete('/pizza/{id}', [MedewerkerController::class, 'pizzaDelete'])->name('pizza.destroy');
-
+    Route::delete('/ingredient/{id}', [MedewerkerController::class, 'ingredientVerwijderenVanDb'])->name('werknemers.ingredientVerwijderenVanDb');
     Route::post('pizza/{id}/ingredienten', [MedewerkerController::class, 'ingredientToevoegen'])->name('pizza.ingredientToevoegen');
     Route::delete('pizza/{pizza}/ingredienten/{ingredient}', [MedewerkerController::class, 'ingredientVerwijderen'])->name('pizza.ingredientVerwijderen');
+
 
 
 });
