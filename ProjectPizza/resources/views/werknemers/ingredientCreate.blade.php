@@ -40,7 +40,7 @@
         </header>
     </div>
 
-    <div>
+    <div class="bg-black bg-opacity-70 p-6 mt-3 mx-auto rounded-lg shadow-lg space-y-4 text-white">
         <h1 class="text-5xl text-center font-bold m-8">Ingredienten Toevoegen</h1>
         <form class="flex flex-col items-center" action="{{route('werknemers.ingredientToevoegenInDb')}}" method="POST" >
             @csrf
@@ -48,7 +48,7 @@
             <input class="text-black" type="text" name="ingredient" id="ingredient" required>
             <label for="prijs">Prijs:</label>
             <input class="text-black" type="number" step="0.01" name="prijs" id="prijs" required>
-            <button class="bg-yellow-300 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded mt-4"
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded mt-4"
                 type="submit">Toevoegen</button>
         </form>
     </div>
