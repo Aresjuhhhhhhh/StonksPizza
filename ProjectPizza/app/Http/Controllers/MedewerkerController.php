@@ -21,8 +21,8 @@ class MedewerkerController extends Controller
         return view('werknemers.ingredientShow', compact('ingredienten'));
     }
     public function createIngredienten(){
-        $ingredienten = Ingredient::all();
-        return view('werknemers.ingredientCreate', compact('ingredienten'));
+        
+        return view('werknemers.ingredientCreate');
     }
     public function index()
     {
