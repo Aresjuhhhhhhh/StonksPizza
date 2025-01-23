@@ -40,7 +40,7 @@
         </header>
     </div>
 
-    <div>
+    <div class="bg-black bg-opacity-70 p-6 rounded-lg shadow-lg mt-4 w-2/4 mx-auto">
         <form action="{{ route('werknemers.ingredientEdit', $ingredient->id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -50,7 +50,7 @@
             <label for="prijs">Prijs:</label>
             <input class="text-black" type="number" value="{{$ingredient->verkoopPrijs}}" step="0.01" name="prijs"
                 id="prijs" required>
-            <button class="bg-yellow-300 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded mt-4"
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded mt-4"
                 type="submit">Aanpassen</button>
         </form>
     </div>
