@@ -41,37 +41,36 @@
         </header>
     </div>
 
-
-    <div>
+    <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-black bg-opacity-70 p-6 mt-3 mx-auto rounded-lg shadow-lg text-white">
         @foreach ($ingredienten as $ingredient)
-        <h1>
-            {{$ingredient->naam}}
-        </h1>
-        <h2>
-            {{$ingredient->verkoopPrijs}}
-        </h2>
-        <div class="flex gap-2 justify-center mt-4">
-                        <!-- Edit Button -->
-                        <form action="{{ route('werknemers.pizzaEdit', $ingredient->id) }}" method="GET">
-                            @csrf
-                            <button type="submit"
-                                class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow">
-                                ✏️ Edit
-                            </button>
-                        </form>
+            <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <h1 class="text-3xl font-bold">{{ $ingredient->naam }}</h1>
+                <h2 class="text-3xl">{{ $ingredient->verkoopPrijs }}</h2>
+                <div class="flex gap-2 justify-center mt-4">
+                    <!-- Edit Button -->
+                    <form action="{{ route('werknemers.pizzaEdit', $ingredient->id) }}" method="GET">
+                        @csrf
+                        <button type="submit"
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow">
+                            ✏️ Edit
+                        </button>
+                    </form>
 
-                        <!-- Delete Button -->
-                        <form action="{{ route('pizza.destroy', $ingredient->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded shadow">
-                                ❌  Delete
-                            </button>
-                        </form>
-                    </div>
+                    <!-- Delete Button -->
+                    <form action="{{ route('pizza.destroy', $ingredient->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded shadow">
+                            ❌ Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
         @endforeach
     </div>
+
 </body>
 
 </html>
