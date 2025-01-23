@@ -16,6 +16,14 @@ class MedewerkerController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function ingredientenIndex(){
+        $ingredienten = Ingredient::all();
+        return view('werknemers.ingredientShow', compact('ingredienten'));
+    }
+    public function createIngredienten(){
+        $ingredienten = Ingredient::all();
+        return view('werknemers.ingredientCreate', compact('ingredienten'));
+    }
     public function index()
     {
         $user = auth()->user();
