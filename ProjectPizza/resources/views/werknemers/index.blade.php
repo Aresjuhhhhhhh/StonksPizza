@@ -52,7 +52,7 @@
     </div>
 
     @if(session('message'))
-        <div id="message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
+        <div id="message" class="bg-green-100 border text-center border-green-400 text-green-700 px-4 py-2 rounded mb-4">
             {{ session('message') }}
         </div>
     @endif

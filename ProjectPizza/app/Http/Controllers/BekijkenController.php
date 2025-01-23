@@ -16,13 +16,13 @@ class BekijkenController extends Controller
         $pizza = Pizza::find($id);
         $Ingredienten = Ingredient::all();
         $pizzaGrootte = Bestelregel::all();
-
+        $basisIngredienten = $pizza->ingredienten;
 
         if (!$pizza) {
             abort(404, 'Pizza not found.');
         }
     
-        return view('klant.bekijken', compact('pizza', 'Ingredienten', 'pizzaGrootte'));
+        return view('klant.bekijken', compact('pizza', 'Ingredienten', 'pizzaGrootte', 'basisIngredienten'));
     }
 
     public function store(Request $request)

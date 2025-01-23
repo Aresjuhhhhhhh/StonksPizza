@@ -77,9 +77,12 @@
                     @csrf
                     @method('PUT')
                     <select name="status" class="p-2 rounded bg-gray-800 text-yellow-300 w-full mb-4">
-                        <option value="In behandeling">In behandeling</option>
-                        <option value="In de oven">In de oven</option>
-                        <option value="Klaar voor ophalen">Klaar voor ophalen</option>
+                        <option value="In behandeling" {{ old('status', $order->status) == 'In behandeling' ? 'selected' : '' }}>In behandeling</option>
+                        <option value="In de oven" {{ old('status', $order->status) == 'In de oven' ? 'selected' : '' }}>In de
+                            oven</option>
+                        <option value="Klaar voor ophalen" {{ old('status', $order->status) == 'Klaar voor ophalen' ? 'selected' : '' }}>Klaar voor ophalen</option>
+                        <option value="opgehaald" {{ old('status', $order->status) == 'opgehaald' ? 'selected' : '' }}>
+                            Opgehaald</option>
                     </select>
                     <button class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow w-full">
                         Bevestigen
@@ -90,11 +93,14 @@
                     @csrf
                     @method('PUT')
                     <select name="status" class="p-2 rounded bg-gray-800 text-yellow-300 w-full mb-4">
-                        <option value="In behandeling">In behandeling</option>
-                        <option value="In de oven">In de oven</option>
-                        <option value="Klaar voor ophalen">Klaar voor ophalen</option>
-                        <option value="Onderweg">Onderweg</option>
-                        <option value="Afgeleverd">Afgeleverd</option>
+                        <option value="In behandeling" {{ old('status', $order->status) == 'In behandeling' ? 'selected' : '' }}>In behandeling</option>
+                        <option value="In de oven" {{ old('status', $order->status) == 'In de oven' ? 'selected' : '' }}>In de
+                            oven</option>
+                        <option value="Klaar voor ophalen" {{ old('status', $order->status) == 'Klaar voor ophalen' ? 'selected' : '' }}>Klaar voor ophalen</option>
+                        <option value="Onderweg" {{ old('status', $order->status) == 'Onderweg' ? 'selected' : '' }}>Onderweg
+                        </option>
+                        <option value="Afgeleverd" {{ old('status', $order->status) == 'Afgeleverd' ? 'selected' : '' }}>
+                            Afgeleverd</option>
                     </select>
                     <button class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow w-full">
                         Bevestigen

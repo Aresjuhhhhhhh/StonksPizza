@@ -22,7 +22,8 @@
     <div>
         <h1>Actieve Bestellingen</h1>
 
-            @foreach ($orders as $order)
+        @foreach ($orders as $order)
+            @if($order->status == 'Klaar voor ophalen' || $order->status == 'Onderweg')
                 <h1>Order ID: {{ $order->id }}</h1>
                 <h1>Order Status: {{ $order->status }}</h1>
                 <form method="POST" action="{{ route('bezorger.update', ['order' => $order->id]) }}">
@@ -36,8 +37,10 @@
                         Bevestigen
                     </button>
                 </form>
-            @endforeach
-
+            @else
+                <h1>Geen actieve bestellingen</h1>
+            @endif
+        @endforeach
     </div>
 </body>
 

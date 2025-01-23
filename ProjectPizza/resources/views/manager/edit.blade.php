@@ -35,11 +35,11 @@
             <label for="telefoonnummer">Telefoonnummer:</label>
             <input class="text-black" type="text" value="{{$werker->telefoonnummer}}" name="telefoonnummer"
                 id="telefoonnummer" required>
-                <label for="role">Rol:</label>
+            <label for="role">Rol:</label>
             <select name="role" id="role" class="text-black">
-                <option value="manager" {{ old('role') == 'manager' ? 'selected' : '' }}>Manager</option>
-                <option value="werker" {{ old('role') == 'werker' ? 'selected' : '' }}>Werker</option>
-                <option value="bezorger" {{ old('role') == 'bezorger' ? 'selected' : '' }}>Bezorger</option>
+                <option value="manager" {{ old('role', $user->Rol) == 'manager' ? 'selected' : '' }}>Manager</option>
+                <option value="werker" {{ old('role', $user->Rol) == 'werker' ? 'selected' : '' }}>Werker</option>
+                <option value="bezorger" {{ old('role', $user->Rol) == 'bezorger' ? 'selected' : '' }}>Bezorger</option>
             </select>
             <button type="submit" class="text-yellow-300 hover:text-yellow-400 underline">Opslaan</button>
         </form>

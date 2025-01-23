@@ -283,6 +283,11 @@ class MedewerkerController extends Controller
         $order->status = $request->input('status');
         $order->save();
 
+        if ($order->status === 'opgehaald') {
+            $order->delete();
+            session()->flash('message', 'Bestelling afgemaakt!');
+        return redirect()->route('medewerker.index', ['order' => $id]);
+        }
 
         session()->flash('message', 'Status bijgewerkt!');
         return redirect()->route('medewerker.index', ['order' => $id]);

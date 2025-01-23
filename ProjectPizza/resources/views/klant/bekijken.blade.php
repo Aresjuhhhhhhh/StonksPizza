@@ -30,6 +30,16 @@
             @csrf
             <input type="hidden" name="pizza_id" value="{{ $pizza->id }}">
 
+            <div>
+                <h1>Ingredienten</h1>
+                <div class="grid grid-cols-2 gap-4 text-yellow-400">
+                    @foreach ($pizza->ingredienten as $ingredient)
+                        <div>
+                            <p>{{ $ingredient->naam }}</p>
+                        </div>
+                    @endforeach
+            </div>
+
             <div id="extra-ingredients" class="extras-container">
                 <h1 class="text-xl font-bold text-yellow-400 mb-3">Extra's</h1>
                 <div class="grid ml-32 grid-cols-2 gap-4">
