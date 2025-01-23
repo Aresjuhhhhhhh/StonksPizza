@@ -16,12 +16,21 @@ class MedewerkerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function ingredientenIndex(){
+    public function ingredientenIndex()
+    {
+        $user = auth()->user();
+        if ($user->Rol === 'klant') {
+            return redirect('/login')->with('error', 'Unauthorized access.');
+        }
         $ingredienten = Ingredient::all();
         return view('werknemers.ingredientShow', compact('ingredienten'));
     }
-    public function createIngredienten(){
-        
+    public function createIngredienten()
+    {
+        $user = auth()->user();
+        if ($user->Rol === 'klant') {
+            return redirect('/login')->with('error', 'Unauthorized access.');
+        }
         return view('werknemers.ingredientCreate');
     }
     public function index()
@@ -43,16 +52,53 @@ class MedewerkerController extends Controller
         return view('werknemers.index', compact('user', 'orders', 'orderItems'));
     }
 
+    public function EditIngredient(Request $request, $id)
+    {
+        // Validate the request data
+        $request->validate([
+            'ingredient' => 'required|string|max:255',
+            'prijs' => 'required|numeric|min:0',
+        ]);
+
+        // Find the ingredient by ID and update it
+        $ingredient = Ingredient::findOrFail($id);
+        $ingredient->update([
+            'naam' => $request->input('ingredient'),
+            'verkoopPrijs' => $request->input('prijs'),
+        ]);
+
+        // Redirect back with a success message
+        return redirect()->route('werknemers.ingredientenIndex');
+    }
+
+    public function ingredientVerwijderenVanDb($id)
+    {
+        $ingredient = Ingredient::findOrFail($id);
+        $ingredient->delete();
+
+        return redirect()->route('werknemers.ingredientenIndex');
+    }
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function ingredientEditIndex($id)
     {
-        //
+        $user = auth()->user();
+        if ($user->Rol === 'klant') {
+            return redirect('/login')->with('error', 'Unauthorized access.');
+        }
+
+        $ingredient = Ingredient::findOrFail($id);
+
+        return view('werknemers.ingredientEdit', compact('ingredient'));
     }
 
     public function ingredientToevoegenInDb(Request $request)
     {
+        $user = auth()->user();
+        if ($user->Rol === 'klant') {
+            return redirect('/login')->with('error', 'Unauthorized access.');
+        }
         $request->validate([
             'ingredient' => 'required|string|max:255',
             'prijs' => 'required|numeric|min:0',
@@ -106,12 +152,16 @@ class MedewerkerController extends Controller
 
     public function pizzaUpdate(Request $request, $id)
     {
+        $user = auth()->user();
+        if ($user->Rol === 'klant') {
+            return redirect('/login')->with('error', 'Unauthorized access.');
+        }
         // Validate the request
         $validatedData = $request->validate([
             'naam' => 'required|string|max:255',
             'beschrijving' => 'required|string|max:1000',
             'prijs' => 'required|numeric|min:0',
-            'afbeelding' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'afbeelding' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'ingredients' => 'nullable|array',
             'ingredients.*' => 'exists:ingredienten,id',
         ]);
@@ -128,7 +178,7 @@ class MedewerkerController extends Controller
 
             $destinationPath = public_path('images');
             $request->file('afbeelding')->move($destinationPath, $imagePath);
-            
+
             $pizza->imagePath = $imagePath;
         }
 
@@ -145,6 +195,10 @@ class MedewerkerController extends Controller
 
     public function pizzaDelete($id)
     {
+        $user = auth()->user();
+        if ($user->Rol === 'klant') {
+            return redirect('/login')->with('error', 'Unauthorized access.');
+        }
         $pizza = Pizza::findOrFail($id);
         $pizza->delete();
 
@@ -154,6 +208,10 @@ class MedewerkerController extends Controller
 
     public function pizzaEdit($id)
     {
+        $user = auth()->user();
+        if ($user->Rol === 'klant') {
+            return redirect('/login')->with('error', 'Unauthorized access.');
+        }
         $pizza = Pizza::findOrFail($id);
         $ingredienten = Ingredient::all();
 
@@ -166,6 +224,10 @@ class MedewerkerController extends Controller
 
     public function showPizzas()
     {
+        $user = auth()->user();
+        if ($user->Rol === 'klant') {
+            return redirect('/login')->with('error', 'Unauthorized access.');
+        }
         $pizzas = Pizza::all();
 
         return view('werknemers.pizzaShow', compact('pizzas'));
@@ -173,6 +235,10 @@ class MedewerkerController extends Controller
 
     public function ingredientToevoegen(Request $request, $id)
     {
+        $user = auth()->user();
+        if ($user->Rol === 'klant') {
+            return redirect('/login')->with('error', 'Unauthorized access.');
+        }
         $pizza = Pizza::findOrFail($id);
 
         // Validate the ingredient ID
@@ -188,6 +254,10 @@ class MedewerkerController extends Controller
 
     public function ingredientVerwijderen($pizzaId, $ingredientId)
     {
+        $user = auth()->user();
+        if ($user->Rol === 'klant') {
+            return redirect('/login')->with('error', 'Unauthorized access.');
+        }
         $pizza = Pizza::findOrFail($pizzaId);
         $ingredient = Ingredient::findOrFail($ingredientId);
 
@@ -232,6 +302,10 @@ class MedewerkerController extends Controller
 
     public function pizzaToevoegen(Request $request)
     {
+        $user = auth()->user();
+        if ($user->Rol === 'klant') {
+            return redirect('/login')->with('error', 'Unauthorized access.');
+        }
         // Validate the request data
         $validatedData = $request->validate([
             'naam' => 'required|string|max:255',
