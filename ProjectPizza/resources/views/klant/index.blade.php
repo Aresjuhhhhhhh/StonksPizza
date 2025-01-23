@@ -10,7 +10,8 @@
     <link rel="icon" href="{{ asset('images/PizzarriaIcon.png') }}" type="image/png">
 </head>
 
-<body class="bodyColor" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/abstractPopArtBG.avif');">
+<body class="bodyColor"
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/abstractPopArtBG.avif');">
     <!-- Header -->
     <div class="header-container">
         <header>
@@ -18,20 +19,25 @@
                 <ul class="nav-list">
                     <a href="{{url('/Home')}}"><img src="{{ asset('images/websiteLogo.jpg') }}" alt="pizza"
                             class="logo"></a>
-                    <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/menu') }}">Menu</a></button></li>
-                    <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/overOns') }}">Over ons</a></button></li>
-                    <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/FAQ') }}">Veelgestelde vragen</a></button></li>
-                    <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/soliciteren') }}">Solliciteren</a></button></li>
-                    <li><button class="hover:underline decoration-yellow-300"><a href="{{url('/profiel')}}">Profiel</a></button></li>
-                    <a href="{{url('/cart')}}"><img src="{{ asset('images/ShoppingCart.png') }}" alt="pizzaCart"
-                            class="pizzaCart"></a>
+                    <li><button class="hover:underline decoration-yellow-300"><a
+                                href="{{ url('/menu') }}">Menu</a></button></li>
+                    <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/overOns') }}">Over
+                                ons</a></button></li>
+                    <li><button class="hover:underline decoration-yellow-300"><a href="{{ url('/FAQ') }}">Veelgestelde
+                                vragen</a></button></li>
+                    <li><button class="hover:underline decoration-yellow-300"><a
+                                href="{{ url('/soliciteren') }}">Solliciteren</a></button></li>
+                        <li><button class="hover:underline decoration-yellow-300"><a
+                                    href="{{url('/profiel')}}">Profiel</a></button></li>
+                        <a href="{{url('/cart')}}"><img src="{{ asset('images/ShoppingCart.png') }}" alt="pizzaCart"
+                                class="pizzaCart"></a>
                 </ul>
             </nav>
         </header>
     </div>
     <!--End of header-->
     <script>
-            window.onload = function () {
+        window.onload = function () {
             const successMessage = document.getElementById('message');
             if (successMessage) {
                 setTimeout(function () {
@@ -39,13 +45,13 @@
                 }, 2000);
             }
         };
-</script>
+    </script>
     <!--Body-->
     @if(session('deletemessage'))
-                <div id="message" class="success-message">
-                    {{ session('deletemessage') }}
-                </div>
-            @endif
+        <div id="message" class="success-message">
+            {{ session('deletemessage') }}
+        </div>
+    @endif
     <div class="relative homePageImage">
         <img src="{{ asset('images/HomePageImage.png') }}" alt="pizza" class="hpImg w-full">
         <h1

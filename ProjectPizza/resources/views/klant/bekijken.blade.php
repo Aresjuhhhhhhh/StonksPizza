@@ -39,7 +39,7 @@
                         </div>
                     @endforeach
             </div>
-
+            @auth
             <div id="extra-ingredients" class="extras-container">
                 <h1 class="text-xl font-bold text-yellow-400 mb-3">Extra's</h1>
                 <div class="grid ml-32 grid-cols-2 gap-4">
@@ -83,6 +83,7 @@
                 Add to Cart
             </button>
         </form>
+        @endauth
     </div>
 </body>
 </html>

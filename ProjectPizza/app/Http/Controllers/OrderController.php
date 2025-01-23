@@ -25,6 +25,9 @@ class OrderController extends Controller
             ->where('order_id', $order->id)
             ->get();
 
+            $user->pizzaPunten += 100;
+        $user->save();
+
         // Pass the order data to the view
         return view('klant.successPagina', compact('order', 'orderSummary', 'userInfo', 'formattedDate'));
     }
