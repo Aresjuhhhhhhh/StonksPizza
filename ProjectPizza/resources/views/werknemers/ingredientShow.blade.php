@@ -43,7 +43,34 @@
 
 
     <div>
-        
+        @foreach ($ingredienten as $ingredient)
+        <h1>
+            {{$ingredient->naam}}
+        </h1>
+        <h2>
+            {{$ingredient->verkoopPrijs}}
+        </h2>
+        <div class="flex gap-2 justify-center mt-4">
+                        <!-- Edit Button -->
+                        <form action="{{ route('werknemers.pizzaEdit', $ingredient->id) }}" method="GET">
+                            @csrf
+                            <button type="submit"
+                                class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow">
+                                ✏️ Edit
+                            </button>
+                        </form>
+
+                        <!-- Delete Button -->
+                        <form action="{{ route('pizza.destroy', $ingredient->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded shadow">
+                                ❌  Delete
+                            </button>
+                        </form>
+                    </div>
+        @endforeach
     </div>
 </body>
 
