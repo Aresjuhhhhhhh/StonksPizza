@@ -19,7 +19,15 @@
 </script>
 <body class="bodyColor min-h-screen flex flex-col bg-cover bg-center"
     style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/abstractPopArtBG.avif');">
+
     <div>
+        <a href="{{route('werknemers.pizzaToevoegen')}}">Pizza Toevoegen</a>
+    </div>
+
+
+
+
+    <div class="m-8" >
 
     @if(session('message'))
                 <div id="message" class="success-message">
@@ -28,6 +36,9 @@
             @endif
         <h1>Actieve Bestellingen</h1>
 
+        @if($orders->isEmpty())
+            <h1>Geen actieve bestellingen</h1>
+        @endif
         @foreach ($orders as $order)
             <div>
                 <h1>Order id: {{$order->id}}</h1>

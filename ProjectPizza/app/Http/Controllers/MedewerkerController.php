@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Pizza;
 use Carbon\Carbon;
 
 
@@ -58,16 +59,16 @@ class MedewerkerController extends Controller
         if ($user->Rol === 'klant') {
             return redirect('/login')->with('error', 'Unauthorized access.');
         }
-    
+
         // Fetch the specific order by ID
         $order = Order::findOrFail($id);
-    
+
         // Format the 'datum' for the specific order
         $formattedDate = Carbon::parse($order->datum)->format('H:i');
-    
+
         // Fetch associated order items for this specific order, including related models
         $orderItems = $order->orderItems()->with('product', 'grootte', 'ingredients')->get();
-    
+
         return view('werknemers.show', compact('user', 'order', 'formattedDate', 'orderItems'));
     }
 
@@ -88,34 +89,74 @@ class MedewerkerController extends Controller
         if ($user->Rol === 'klant') {
             return redirect('/login')->with('error', 'Unauthorized access.');
         }
-    
+
         // Find the order by ID
         $order = Order::findOrFail($id);
-    
+
         // Update the status
         $order->status = $request->input('status');
         $order->save();
 
-        
+
         session()->flash('message', 'Status bijgewerkt!');
         return redirect()->route('medewerker.index', ['order' => $id]);
     }
 
+    public function pizzaToevoegenIndex()
+    {
+        $user = auth()->user();
+        if ($user->Rol === 'klant') {
+            return redirect('/login')->with('error', 'Unauthorized access.');
+        }
+
+        return view('werknemers.pizzaCreate', compact('user'));
+    }
+
+    public function pizzaToevoegen(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'naam' => 'required|string|max:255',
+            'beschrijving' => 'required|string|max:1000',
+            'prijs' => 'required|numeric|min:0',
+            'afbeelding' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validates image type and size
+        ]);
+    
+        if ($request->hasFile('afbeelding')) {
+            $originalFileName = $request->file('afbeelding')->getClientOriginalName(); // Get the original file name
+        
+            // Save the file in the 'public/images' directory
+            $destinationPath = public_path('images'); // Path to 'public/images'
+            $request->file('afbeelding')->move($destinationPath, $originalFileName);
+        
+            $afbeeldingNaam = $originalFileName; // Use the original file name
+        }
+    
+        // Save the pizza details to the database
+        Pizza::create([
+            'naam' => $validatedData['naam'],
+            'beschrijving' => $validatedData['beschrijving'],
+            'totaalPrijs' => $validatedData['prijs'],
+            'imagePath' => $afbeeldingNaam, // Store the original file name in the database
+        ]);
+    
+        return redirect()->back();
+    }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         $user = auth()->user();
-    
+
         if ($user->Rol === 'klant') {
             return redirect('/login')->with('error', 'Unauthorized access.');
         }
-    
+
         // Find the order by ID and delete it
         $order = Order::findOrFail($id);
         $order->delete();
-    
+
         session()->flash('message', 'Bestelling verwijderd!');
         return redirect()->route('medewerker.index');
     }

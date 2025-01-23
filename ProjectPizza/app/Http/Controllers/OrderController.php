@@ -36,6 +36,8 @@ class OrderController extends Controller
         // Ensure only the owner of the order can cancel it
         $order = Order::where('id', $id)->where('user_id', $user->id)->firstOrFail();
     
+        $user->pizzaPunten -= 100;
+        $user->save();
         // Delete the order
         $order->delete();
     

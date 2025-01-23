@@ -65,9 +65,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/success', [OrderController::class, 'showSuccessPage'])->name('klant.successPagina');
     Route::put('/orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 
-        // Manager Routes
+        // medewerker Routes
         Route::get('/medewerker', [MedewerkerController::class, 'index'])->name('medewerker.index');
         Route::get('/werknemers/show/{order}', [MedewerkerController::class, 'show'])->name('werknemers.show');
+        Route::get('/werknemers/pizzaToevoegen', [MedewerkerController::class, 'pizzaToevoegenIndex'])->name('werknemers.pizzaToevoegenIndex');
+        Route::post('/werknemers/pizzaToevoegen', [MedewerkerController::class, 'pizzaToevoegen'])->name('werknemers.pizzaToevoegen');
         Route::put('/werknemers/update/{order}', [MedewerkerController::class, 'update'])->name('werknemers.update');
         Route::delete('/werknemers/orders/{order}', [MedewerkerController::class, 'destroy'])->name('werknemers.destroy');
 

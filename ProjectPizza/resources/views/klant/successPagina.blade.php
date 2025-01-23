@@ -26,7 +26,7 @@
                     <p class="text-2xl">
                         <span class="font-semibold">Status:</span> {{$order->status}}
                     </p>
-                    <p class="text-2xl">
+                    <p class="text-2xl text-yellow-300">
                         <span class="font-semibold">Bestelmethode:</span> {{$order->bestelmethode}}
                     </p>
                     <p class="text-2xl">
