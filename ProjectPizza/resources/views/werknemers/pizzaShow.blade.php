@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizza's Bekijken</title>
+    @vite('resources/css/app.css')
 </head>
 
 <body class="bodyColor min-h-screen flex flex-col bg-cover bg-center"
@@ -22,18 +23,21 @@
             <h1>{{$pizza->totaalPrijs}}</h1>
             <img src="{{ asset('images/' . $pizza->imagePath) }}" alt="pizza" class="pizza">
             <div class="flex gap-2">
-                <form>
+                <!-- Edit Button -->
+                <form action="{{ route('werknemers.pizzaEdit', $pizza->id) }}" method="GET">
                     @csrf
                     <button type="submit"
                         class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow">
                         ✏️ Edit
                     </button>
                 </form>
-                <form>
+
+                <!-- Delete Button -->
+                <form action="{{ route('pizza.destroy', $pizza->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit"
-                        class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow">
+                        class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded shadow">
                         ❌ Delete
                     </button>
                 </form>
