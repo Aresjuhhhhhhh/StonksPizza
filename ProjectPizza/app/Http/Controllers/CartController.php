@@ -38,6 +38,7 @@ class CartController extends Controller
 
         $UserInfo = User::where('id', $user->id)->first();
 
+        
         return view('klant.bestelling', compact('winkelmandjes', 'totaalPrijs', 'factorKosten', 'UserInfo'));
     }
 
@@ -46,21 +47,24 @@ class CartController extends Controller
         // Retrieve the current authenticated user
         $user = auth()->user();
 
-        // Check if the user has an adres and woonplaats
-        if (is_null($user->adres) || is_null($user->woonplaats)) {
-            return redirect('/profiel')->withErrors([
-                'message' => 'U moet uw adres en woonplaats toevoegen voordat u een bestelling kunt plaatsen.',
-            ]);
-        }
 
-        // Retrieve the total price and delivery option from the form
         $totaalPrijs = $request->input('totaal_prijs');
         $deliveryOption = $request->input('delivery_option');
 
-        // Create a new order record
+        if($deliveryOption == 'bezorgen')
+        {
+            if (is_null($user->adres) || is_null($user->woonplaats)) {
+                return redirect('/profiel')->withErrors([
+                    'message' => 'U moet uw adres en woonplaats toevoegen voordat u een bestelling kunt plaatsen.',
+                ]);
+            }
+        }
+
+
+
         $order = Order::create([
             'user_id' => $user->id,
-            'status' => 'pending', // Set the initial status to pending
+            'status' => 'pending', 
             'bestelmethode' => $deliveryOption,
             'datum' => now(),
             'totaal_prijs' => $totaalPrijs,
@@ -100,7 +104,6 @@ class CartController extends Controller
             ExtraIngredientWinkelmandje::where('winkelmandje_id', $item->id)->delete();
             $item->delete();
         }
-
         // Redirect to success page
         return redirect()->route('klant.successPagina')->with('order', $order);
     }
