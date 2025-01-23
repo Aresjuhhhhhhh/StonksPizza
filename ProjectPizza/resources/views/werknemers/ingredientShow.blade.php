@@ -49,7 +49,7 @@
                 <h2 class="text-3xl">{{ $ingredient->verkoopPrijs }}</h2>
                 <div class="flex gap-2 justify-center mt-4">
                     <!-- Edit Button -->
-                    <form action="{{ route('werknemers.pizzaEdit', $ingredient->id) }}" method="GET">
+                    <form action="{{ route('werknemers.ingredientEditIndex', $ingredient->id) }}" method="GET">
                         @csrf
                         <button type="submit"
                             class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow">
@@ -58,7 +58,7 @@
                     </form>
 
                     <!-- Delete Button -->
-                    <form action="{{ route('pizza.destroy', $ingredient->id) }}" method="POST">
+                    <form action="{{ route('werknemers.ingredientVerwijderenVanDb', $ingredient->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit"
