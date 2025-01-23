@@ -73,7 +73,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/werknemers/showPizzas', [MedewerkerController::class, 'showPizzas'])->name('werknemers.showPizzas');
     Route::put('/werknemers/update/{order}', [MedewerkerController::class, 'update'])->name('werknemers.update');
     Route::delete('/werknemers/orders/{order}', [MedewerkerController::class, 'destroy'])->name('werknemers.destroy');
-
+    Route::get('/werknemers/ingredientenIndex', [MedewerkerController::class, 'ingredientenIndex'])->name('werknemers.ingredientenIndex');
+    Route::get('/werknemers/createIngredienten', [MedewerkerController::class, 'createIngredienten'])->name('werknemers.createIngredienten');
 
     Route::get('/pizza/edit/{id}', [MedewerkerController::class, 'pizzaEdit'])->name('werknemers.pizzaEdit');
 

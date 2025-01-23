@@ -8,6 +8,7 @@
     <title>Medewerker</title>
     @vite('resources/css/app.css')
     @vite('resources/css/index.css')
+    <link rel="icon" href="{{ asset('images/PizzarriaIcon.png') }}" type="image/png">
 </head>
 <script>
     window.onload = function () {
@@ -31,6 +32,10 @@
                                 Toevoegen</a></button></li>
                     <li><button class="hover:underline decoration-yellow-300"><a
                                 href="{{route('werknemers.showPizzas')}}">Pizza's Bekijken</a></button></li>
+                    <li><button class="hover:underline decoration-yellow-300"><a
+                                href="{{route('werknemers.ingredientenIndex')}}">Ingredienten Bekijken</a></button></li>
+                    <li><button class="hover:underline decoration-yellow-300"><a
+                                href="{{route('werknemers.createIngredienten')}}">Ingredienten Toevoegen</a></button></li>
                     <li>
                         <form class="LogoutKnop" method="POST" action="{{ route('logout') }}">
                             @csrf
