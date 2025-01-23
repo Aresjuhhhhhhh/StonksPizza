@@ -7,6 +7,7 @@
     <title>Bekijken</title>
     @vite('resources/css/app.css')
     @vite('resources/css/bekijken.css')
+    <link rel="icon" href="{{ asset('images/PizzarriaIcon.png') }}" type="image/png">
 </head>
 
 <body class="bodyColor" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/abstractPopArtBG.avif'); 
