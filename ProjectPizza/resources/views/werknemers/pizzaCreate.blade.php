@@ -20,7 +20,6 @@
     </div>
 
     <div class="m-8" >
-
         <form method="POST" action="{{ route('werknemers.pizzaToevoegen') }}" enctype="multipart/form-data">
             @csrf
             <label for="naam">Naam</label>
@@ -34,8 +33,17 @@
 
             <label for="afbeelding">Afbeelding</label>
             <input  type="file" name="afbeelding" id="afbeelding" accept="public/image/*" required>
-
-            <button type="submit">Toevoegen</button>
+            <div class="grid ml-32 grid-cols-2 gap-4">
+                    @foreach ($Ingredienten as $ingredient)
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="ingredient-{{ $ingredient->id }}" name="ingredients[]"
+                                    value="{{ $ingredient->id }}" class="rounded text-yellow-400 focus:ring-yellow-300">
+                                <label for="ingredient-{{ $ingredient->id }}"
+                                    class="text-gray-200">{{ $ingredient->naam }}</label>
+                            </div>
+                    @endforeach
+                </div>
+                <button type="submit">Toevoegen</button>
         </form>
     </div>
 

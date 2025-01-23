@@ -24,6 +24,10 @@
         <a href="{{route('werknemers.pizzaToevoegen')}}">Pizza Toevoegen</a>
     </div>
 
+    <div>
+        <a href="{{route('werknemers.showPizzas')}}">Pizza's Bekijken</a>
+    </div>
+
 
 
 
