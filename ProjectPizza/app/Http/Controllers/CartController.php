@@ -60,6 +60,11 @@ class CartController extends Controller
             }
         }
 
+        if(empty($deliveryOption))
+        {
+            return redirect()->back()->withErrors(['message' => 'Selecteer een bestelmethode.']);
+        }
+
 
 
         $order = Order::create([
@@ -74,7 +79,7 @@ class CartController extends Controller
         $winkelmandje = Winkelmandje::where('user_id', $user->id)->get();
 
         if ($winkelmandje->isEmpty()) {
-            return redirect()->route('klant.winkelmandje')->withErrors(['message' => 'Winkelmandje is leeg.']);
+            return redirect()->back()->withErrors(['message' => 'Winkelmandje is leeg.']);
         }
 
         // Loop through each item in the winkelmandje

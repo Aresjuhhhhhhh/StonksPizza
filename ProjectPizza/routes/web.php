@@ -86,6 +86,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('pizza/{pizza}/ingredienten/{ingredient}', [MedewerkerController::class, 'ingredientVerwijderen'])->name('pizza.ingredientVerwijderen');
 
 
+    //Manager Routes
+    Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');
+    Route::get('/manager/show/{id}', [ManagerController::class, 'show'])->name('manager.show');
+    Route::get('/manager/edit/{id}', [ManagerController::class, 'edit'])->name('manager.edit');
+    Route::delete('/manager/destroy/{id}', [ManagerController::class, 'destroy'])->name('manager.destroy');
+    Route::put('/manager/update/{id}', [ManagerController::class, 'update'])->name('manager.update');
+    Route::get('/manager/create', [ManagerController::class, 'create'])->name('manager.create');
+    Route::post('/manager/store', [ManagerController::class, 'store'])->name('manager.store');
 
 });
 

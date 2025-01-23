@@ -11,7 +11,15 @@
     margin: 5%;
     padding: 5%;
 }
-
+.alert-danger {
+    color: red;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
 .success-message {
     background-color: #4CAF50; /* Green background */
     color: white;

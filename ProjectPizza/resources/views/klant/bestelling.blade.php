@@ -44,7 +44,7 @@
             if (successMessage) {
                 setTimeout(function () {
                     successMessage.style.display = 'none';
-                }, 2000);
+                }, 3000);
             }
         };
 
@@ -53,7 +53,16 @@
             if (successMessage) {
                 setTimeout(function () {
                     successMessage.style.display = 'none';
-                }, 2000);
+                }, 3000);
+            }
+        };
+
+        window.onload = function () {
+            const successMessage = document.getElementById('alert');
+            if (successMessage) {
+                setTimeout(function () {
+                    successMessage.style.display = 'none';
+                }, 3000);
             }
         };
     </script>
@@ -78,6 +87,16 @@
             @if(session('message'))
                 <div id="message" class="success-message">
                     {{ session('message') }}
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div id="alert" class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
 
