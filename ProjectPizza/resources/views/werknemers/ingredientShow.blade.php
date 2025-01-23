@@ -10,7 +10,8 @@
     <link rel="icon" href="{{ asset('images/PizzarriaIcon.png') }}" type="image/png">
 </head>
 
-<body>
+<body class="bodyColor min-h-screen flex flex-col bg-cover bg-center"
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/abstractPopArtBG.avif');">
     <div class="header-container2">
         <header>
             <nav>
@@ -38,6 +39,11 @@
             </nav>
 
         </header>
+    </div>
+
+
+    <div>
+        
     </div>
 </body>
 
