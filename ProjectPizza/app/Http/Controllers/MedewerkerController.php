@@ -76,11 +76,55 @@ class MedewerkerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $pizza = Pizza::findOrFail($id);
+    
+        $ingredients = Ingredient::all(); // This will fetch all ingredients
+    
+        return view('werknemers.pizzaEdit', compact('pizza', 'ingredients')); // Pass 'ingredients' to the view
     }
 
+    public function pizzaUpdate(Request $request, $id)
+    {
+        $pizza = Pizza::findOrFail($id);
+
+        // Validate the request data
+        $validatedData = $request->validate([
+            'naam' => 'required|string|max:255',
+            'beschrijving' => 'required|string|max:1000',
+            'prijs' => 'required|numeric|min:0',
+            'afbeelding' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Update pizza details
+        $pizza->update($validatedData);
+
+        // If an image is uploaded, save it
+        if ($request->hasFile('afbeelding')) {
+            $originalFileName = $request->file('afbeelding')->getClientOriginalName();
+            $destinationPath = public_path('images');
+            $request->file('afbeelding')->move($destinationPath, $originalFileName);
+            $pizza->update(['imagePath' => $originalFileName]);
+        }
+
+        return redirect()->route('werknemers.index')->with('success', 'Pizza updated successfully!');
+    }
+
+    public function pizzaDelete($id)
+    {
+        $pizza = Pizza::findOrFail($id);
+        $pizza->delete();
+
+        $pizzas = Pizza::all();
+        return view('werknemers.pizzaShow', compact('pizzas'));
+    }
+
+    public function pizzaEdit($id)
+    {
+        $pizza = Pizza::findOrFail($id);
+        return view('werknemers.pizzaEdit', compact('pizza'));
+    }
     public function showPizzas()
     {
         $pizzas = Pizza::all();
@@ -128,39 +172,38 @@ class MedewerkerController extends Controller
             'naam' => 'required|string|max:255',
             'beschrijving' => 'required|string|max:1000',
             'prijs' => 'required|numeric|min:0',
-            'afbeelding' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
-            'ingredients' => 'nullable|array', 
-            'ingredients.*' => 'exists:ingredienten,id', 
+            'afbeelding' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'ingredients' => 'nullable|array',
+            'ingredients.*' => 'exists:ingredienten,id',
         ]);
-    
+
         if ($request->hasFile('afbeelding')) {
-            $originalFileName = $request->file('afbeelding')->getClientOriginalName(); 
-        
-            
-            $destinationPath = public_path('images'); 
+            $originalFileName = $request->file('afbeelding')->getClientOriginalName();
+
+
+            $destinationPath = public_path('images');
             $request->file('afbeelding')->move($destinationPath, $originalFileName);
-        
-            $afbeeldingNaam = $originalFileName; 
+
+            $afbeeldingNaam = $originalFileName;
         }
-    
-     
+
+
         $pizza = Pizza::create([
             'naam' => $validatedData['naam'],
             'beschrijving' => $validatedData['beschrijving'],
             'totaalPrijs' => $validatedData['prijs'],
-            'imagePath' => $afbeeldingNaam, 
+            'imagePath' => $afbeeldingNaam,
         ]);
-    
-      
-        if (!empty($validatedData['ingredients']))
-        {
-            
+
+
+        if (!empty($validatedData['ingredients'])) {
+
             $pizza->ingredienten()->attach($validatedData['ingredients']);
         }
-    
+
         $pizzas = Pizza::all();
-    
-        return view('werknemers.pizzaShow',compact('pizzas'));
+
+        return view('werknemers.pizzaShow', compact('pizzas'));
     }
     /**
      * Remove the specified resource from storage.
