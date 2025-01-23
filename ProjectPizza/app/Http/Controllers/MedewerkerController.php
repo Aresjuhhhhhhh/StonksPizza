@@ -106,9 +106,14 @@ class MedewerkerController extends Controller
         $pizza->beschrijving = $validatedData['beschrijving'];
         $pizza->totaalPrijs = $validatedData['prijs'];
 
+
         // Handle the image upload if provided
         if ($request->hasFile('afbeelding')) {
-            $imagePath = $request->file('afbeelding')->store('images', 'public');
+            $imagePath = $request->file('afbeelding')->getClientOriginalName();
+
+            $destinationPath = public_path('images');
+            $request->file('afbeelding')->move($destinationPath, $imagePath);
+            
             $pizza->imagePath = $imagePath;
         }
 
