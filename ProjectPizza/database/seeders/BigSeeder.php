@@ -26,7 +26,7 @@ class BigSeeder extends Seeder
         $medewerker1 = User::create(['name' => 'John Doe', 'email' => 'StonksPizzAdmin1@123.com', 'password' => 'Stonks123', 'Rol' => 'Medewerker', 'woonplaats' => 'Geldrop', 'adres' => 'Dorpstraat 1', 'telefoonnummer' => '0612345678']);
         $medewerker2 = User::create(['name' => 'Jane Doe', 'email' => 'StonksPizzAdmin2@123.com', 'password' => 'Stonks123', 'Rol' => 'Medewerker', 'woonplaats' => 'Helmond', 'adres' => 'HelmondStraat 99', 'telefoonnummer' => '0612345678']);
         $medewerker3 = User::create(['name' => 'Randly Doe', 'email' => 'StonksPizzAdmin3@123.com', 'password' => 'Stonks123', 'Rol' => 'Medewerker', 'woonplaats' => 'Eindhoven', 'adres' => 'StraatLaan 5', 'telefoonnummer' => '0612345678']);
-        $medewerker4 = User::create(['name' => 'Ares Doe', 'email' => 'StonksPizzAdmin4@123.com', 'password' => 'Stonks123', 'Rol' => 'Medewerker', 'woonplaats' => 'Eindhoven', 'adres' => 'Pinklaan 69', 'telefoonnummer' => '0612345678']);
+        $medewerker4 = User::create(['name' => 'Ares Doe', 'email' => 'StonksPizzAdmin4@123.com', 'password' => 'Stonks123', 'Rol' => 'bezorger', 'woonplaats' => 'Eindhoven', 'adres' => 'Pinklaan 69', 'telefoonnummer' => '0612345678']);
         // Create Ingredients
         $Deeg = Ingredient::create(['naam' => 'Deeg', 'verkoopPrijs' => 2.0]);
         $Tomatensaus = Ingredient::create(['naam' => 'Tomatensaus', 'verkoopPrijs' => 0.5]);

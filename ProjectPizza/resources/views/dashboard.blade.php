@@ -27,6 +27,10 @@
                         <p class="text-xl hover:text-black transition rounded-md hover:bg-yellow-400">
                             <a href="{{ route('manager.index') }}">Klik hier!</a>
                         </p>
+                        @elseif(Auth::user()->Rol == "bezorger")
+                        <p class="text-xl hover:text-black transition rounded-md hover:bg-yellow-400">
+                            <a href="{{ route('bezorger.index') }}">Klik hier!</a>
+                        </p>
                     @endif
 
                 </div>

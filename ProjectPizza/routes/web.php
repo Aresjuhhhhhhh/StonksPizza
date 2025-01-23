@@ -11,6 +11,7 @@ use App\Http\Controllers\BekijkenController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BezorgerController;
 
 // Public Routes
 Route::get('/', function () {
@@ -95,6 +96,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/manager/create', [ManagerController::class, 'create'])->name('manager.create');
     Route::post('/manager/store', [ManagerController::class, 'store'])->name('manager.store');
 
+    //bezorger routes
+    Route::get('/bezorger', [BezorgerController::class, 'index'])->name('bezorger.index');
+    Route::put('/bezorger/update/{order}', [BezorgerController::class, 'update'])->name('bezorger.update');
 });
 
 
