@@ -73,7 +73,7 @@
 
                 <div>
                     <h1 class="text-3xl font-bold text-yellow-400 mb-3">Aantal</h1>
-                    <input type="number" id="quantity" name="quantity" min="1" value="1"
+                    <input type="number" id="quantity" name="quantity" min="1" max="10" value="1"
                         class="w-full rounded-lg border-gray-300 text-gray-800 p-2 focus:ring-2 focus:ring-yellow-300 focus:outline-none">
                 </div>
             </div>

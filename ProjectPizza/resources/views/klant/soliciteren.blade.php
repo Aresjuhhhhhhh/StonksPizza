@@ -88,6 +88,10 @@
                         class="w-full p-2 bg-gray-700 rounded border border-gray-600 text-white" required>
                     </textarea>
                 </div>
+                <div>
+                    <button type="submit"
+                        class="w-full p-2 bg-yellow-400 rounded border border-gray-600 text-black">Solliciteren</button>
+                </div>
         </form>
     </div>
     <!-- End of content -->
